@@ -215,6 +215,10 @@ a.kit-soon:hover h3 { color: var(--navy-700); }
 .kit-available p { color: var(--fg-2); }
 .kit-cta { display: inline-block; margin-top: .9rem; font-family: var(--font-sans); font-weight: 700; font-size: .9rem; color: var(--gold-600); }
 .kit-available:hover .kit-cta { color: var(--gold-700); }
+.kits-group-title { font-family: var(--font-display); font-weight: 800; color: var(--navy-700); font-size: 1rem; text-align: center; letter-spacing: .05em; text-transform: uppercase; margin: 2.75rem 0 0; }
+.kits-group-title + .kits-grid { margin-top: 1.25rem; }
+.kit-soon .kit-price { display: block; font-family: var(--font-sans); font-weight: 800; font-size: 1.2rem; color: var(--navy-700); margin-top: .7rem; }
+.kit-available .kit-price { color: var(--gold-700); }
 
 /* ---------- Kit detail page ---------- */
 .backlink { display: inline-flex; align-items: center; gap: .4rem; font-family: var(--font-sans); font-weight: 600; font-size: .9rem; color: var(--navy-700); text-decoration: none; }
