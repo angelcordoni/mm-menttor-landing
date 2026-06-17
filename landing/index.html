@@ -452,13 +452,27 @@
       lmBtn.disabled = true;
       lmBtn.textContent = 'Enviando…';
       try {
-        // Envio CORS-safe a Kit (ConvertKit): respuesta opaca, redirigimos siempre tras enviar
-        await fetch('https://app.kit.com/forms/' + KIT_FORM_ID + '/subscriptions', {
+        // 1) Suscripcion a Kit (ConvertKit) — respuesta opaca (no-cors)
+        const kitReq = fetch('https://app.kit.com/forms/' + KIT_FORM_ID + '/subscriptions', {
           method: 'POST',
           mode: 'no-cors',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           body: new URLSearchParams({ email_address: data.email_address, first_name: data.first_name || '' })
         });
+        // 2) Respaldo: copia del lead a mmmenttor@gmail.com via Web3Forms
+        const backupReq = fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            access_key: '410784cf-1835-4fa6-8d28-55a7d510857c',
+            from_name: 'Menttor — Lead Kit Gratis',
+            subject: 'Nuevo registro · Kit de Gestion gratis',
+            nombre: data.first_name || '',
+            email: data.email_address
+          })
+        });
+        // Esperamos ambos (sin fallar si uno se cae) antes de entregar el kit
+        await Promise.allSettled([kitReq, backupReq]);
         window.location.href = '/recursos.html';
       } catch (err) {
         lmBtn.disabled = false;
