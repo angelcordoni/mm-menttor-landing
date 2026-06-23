@@ -25,3 +25,5 @@ Thumbs.db
 .tmp_ref/
 .tmp_ref2/
 .tmp_*/
+
+.vercel
