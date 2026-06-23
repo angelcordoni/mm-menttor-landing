@@ -427,8 +427,8 @@
     });
   }
 
-  // Lead magnet -> suscripcion a Kit (ConvertKit) y redireccion al entregable
-  const KIT_FORM_ID = '9548057'; // FORM ID de Kit (ConvertKit)
+  // Lead magnet -> suscripcion a MailerLite y redireccion al entregable
+  const ML_FORM_ACTION = 'https://assets.mailerlite.com/jsonp/2465760/forms/191086495499552220/subscribe';
   const lm = document.getElementById('leadmagnet-form');
   if (lm) {
     const lmStatus = document.getElementById('lm-status');
@@ -440,12 +440,18 @@
       lmBtn.disabled = true;
       lmBtn.textContent = 'Enviando…';
       try {
-        // 1) Suscripcion a Kit (ConvertKit) — respuesta opaca (no-cors)
-        const kitReq = fetch('https://app.kit.com/forms/' + KIT_FORM_ID + '/subscriptions', {
+        // 1) Suscripcion a MailerLite — respuesta opaca (no-cors)
+        const mlBody = new URLSearchParams({
+          'fields[email]': data.email_address,
+          'fields[name]': data.first_name || '',
+          'ml-submit': '1',
+          'anticsrf': 'true'
+        });
+        const kitReq = fetch(ML_FORM_ACTION, {
           method: 'POST',
           mode: 'no-cors',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams({ email_address: data.email_address, first_name: data.first_name || '' })
+          body: mlBody
         });
         // 2) Respaldo: copia del lead a mmmenttor@gmail.com via Web3Forms
         const backupReq = fetch('https://api.web3forms.com/submit', {
