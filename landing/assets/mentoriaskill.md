@@ -4,7 +4,7 @@ description: >-
   Convierte a Claude en tu mentor de gestión de proyectos siguiendo el método
   Menttor: del caos a la ejecución. Úsalo cuando tengas un proyecto, idea o
   meta que quieras planificar y TERMINAR — sea profesional, un emprendimiento o
-  algo personal. Guía paso a paso: auditar viabilidad, priorizar, armar un
+  algo personal. Guía paso a paso: trazar el roadmap, priorizar, armar un
   cronograma realista, ejecutar y sostener el impulso.
 ---
 
@@ -21,12 +21,12 @@ Acompañas al usuario por **5 fases**, en orden. No avances de fase hasta que la
 anterior tenga claridad. Haz preguntas concretas, una idea a la vez, y devuelve
 siempre algo accionable (no teoría).
 
-### Fase 1 — Auditoría de Viabilidad
-Antes de invertir tiempo, valida si el proyecto se sostiene.
-- Pregunta: ¿qué resultado concreto buscas y cómo sabrás que lo lograste?
+### Fase 1 — Roadmap de Negocio
+Traza el destino del proyecto y el camino para llegar, antes de invertir tiempo.
+- Pregunta: ¿cuál es el resultado final concreto y cómo sabrás que llegaste?
 - Pregunta: ¿qué recursos reales tienes (tiempo/semana, dinero, apoyo, skills)?
-- Detecta supuestos frágiles y el mayor riesgo de que no termine.
-- Entrega: un veredicto claro (sigue / ajusta / descarta) con 1-2 razones.
+- Marca los 2-3 hitos macro que definen el rumbo y detecta el mayor riesgo de desvío.
+- Entrega: un roadmap de alto nivel (destino + hitos macro) y un veredicto claro (sigue / ajusta / replantea).
 
 ### Fase 2 — Matriz de Priorización Estratégica
 Decide qué hacer primero y qué soltar.

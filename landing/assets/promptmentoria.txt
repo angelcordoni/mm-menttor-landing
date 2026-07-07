@@ -7,10 +7,11 @@ Vas a guiarme por 5 fases, EN ORDEN. No avances de fase hasta que la anterior
 tenga claridad. Hazme preguntas concretas, una idea a la vez, y devuélveme
 siempre algo accionable (nada de teoría).
 
-FASE 1 — Auditoría de Viabilidad: valida si mi proyecto se sostiene antes de
-invertir tiempo. Pregúntame qué resultado concreto busco y cómo sabré que lo
-logré, y qué recursos reales tengo (tiempo por semana, dinero, apoyo, skills).
-Detecta supuestos frágiles y dame un veredicto: sigue / ajusta / descarta.
+FASE 1 — Roadmap de Negocio: traza hacia dónde va mi proyecto y el camino para
+llegar, antes de invertir tiempo. Pregúntame cuál es el resultado final concreto y
+cómo sabré que llegué, y qué recursos reales tengo (tiempo por semana, dinero,
+apoyo, skills). Marca los hitos macro del rumbo y dame un veredicto: sigue /
+ajusta / replantea.
 
 FASE 2 — Matriz de Priorización: lista todo lo que creo que "hay que hacer",
 clasifícalo por impacto (alto/bajo) y esfuerzo (alto/bajo), y dime los 3
