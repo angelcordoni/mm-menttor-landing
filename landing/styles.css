@@ -121,13 +121,13 @@ header.topbar {
 .hero-note { font-size: .9rem; color: var(--fg-3); margin-top: 1rem; }
 .hero-brand { display: flex; align-items: center; justify-content: center; }
 .hero-iso {
-  width: clamp(190px, 20vw, 300px); aspect-ratio: 1; border-radius: 24%;
+  width: clamp(230px, 24vw, 360px); aspect-ratio: 1; border-radius: 24%;
   background: var(--navy-700); display: grid; place-items: center;
-  box-shadow: var(--shadow-lg); transform: rotate(-3deg);
+  box-shadow: var(--shadow-lg);
 }
 .hero-iso b {
   font-family: var(--font-display); font-weight: 900;
-  font-size: clamp(84px, 9vw, 130px); color: var(--gold-500);
+  font-size: clamp(100px, 11vw, 156px); color: var(--gold-500);
   letter-spacing: -.05em; line-height: 1;
 }
 .hero-card {
