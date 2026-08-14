@@ -66,6 +66,7 @@ header.topbar {
 .logo-word { display: flex; flex-direction: column; line-height: 1; }
 .logo-word .n { font-family: var(--font-display); font-weight: 900; font-size: 20px; color: var(--navy-700); letter-spacing: -.04em; }
 .logo-word .m { font-family: var(--font-display); font-weight: 700; font-size: 8px; letter-spacing: .38em; color: var(--gold-600); margin-top: 3px; }
+.logo-tagline { font-family: var(--font-display); font-weight: 700; font-size: 1rem; letter-spacing: .18em; text-transform: uppercase; color: var(--gold-600); line-height: 1; }
 .brand-lockup.on-dark .logo-iso { background: var(--gold-500); }
 .brand-lockup.on-dark .logo-iso b { color: var(--navy-900); }
 .brand-lockup.on-dark .logo-word .n { color: #fff; }
