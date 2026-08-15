@@ -67,6 +67,16 @@ header.topbar {
 .logo-word .n { font-family: var(--font-display); font-weight: 900; font-size: 20px; color: var(--navy-700); letter-spacing: -.04em; }
 .logo-word .m { font-family: var(--font-display); font-weight: 700; font-size: 8px; letter-spacing: .38em; color: var(--gold-600); margin-top: 3px; }
 .logo-tagline { font-family: var(--font-display); font-weight: 700; font-size: 1rem; letter-spacing: .18em; text-transform: uppercase; color: var(--gold-600); line-height: 1; }
+.lang-switch { display: inline-flex; border: 1.5px solid var(--gold-500); border-radius: var(--r-pill); overflow: hidden; flex-shrink: 0; }
+.lang-switch button {
+  font-family: var(--font-sans); font-weight: 700; font-size: .78rem; letter-spacing: .04em;
+  padding: .34rem .58rem; background: transparent; color: var(--navy-700);
+  border: none; cursor: pointer; line-height: 1; transition: background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+}
+.lang-switch button:hover { background: var(--gold-100); }
+.lang-switch button.active { background: var(--gold-500); color: var(--navy-900); }
+.lang-switch button.active:hover { background: var(--gold-500); }
+@media (max-width: 560px) { .lang-switch button { padding: .3rem .5rem; font-size: .72rem; } }
 .brand-lockup.on-dark .logo-iso { background: var(--gold-500); }
 .brand-lockup.on-dark .logo-iso b { color: var(--navy-900); }
 .brand-lockup.on-dark .logo-word .n { color: #fff; }
