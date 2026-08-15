@@ -11,6 +11,10 @@
       if (el.getAttribute('data-es-ph') === null) el.setAttribute('data-es-ph', el.getAttribute('placeholder') || '');
       el.setAttribute('placeholder', (lang === 'en') ? el.getAttribute('data-en-ph') : el.getAttribute('data-es-ph'));
     });
+    document.querySelectorAll('[data-en-href]').forEach(function (el) {
+      if (el.getAttribute('data-es-href') === null) el.setAttribute('data-es-href', el.getAttribute('href') || '');
+      el.setAttribute('href', (lang === 'en') ? el.getAttribute('data-en-href') : el.getAttribute('data-es-href'));
+    });
     document.querySelectorAll('[data-lang-btn]').forEach(function (b) {
       b.classList.toggle('active', b.getAttribute('data-lang-btn') === lang);
     });
