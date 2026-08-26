@@ -4,8 +4,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="robots" content="noindex, nofollow" />
-<title>Mentory Express — 50% OFF | Menttor</title>
-<meta name="description" content="Oferta por tiempo limitado: Mentory Express con 50% de descuento. El Sistema completo en una guía, del caos a la ejecución." />
+<title>Combo 2 kits — 50% OFF | Menttor</title>
+<meta name="description" content="Oferta por tiempo limitado: Mentory Express + Kit de Arranque juntos con 50% de descuento. Los 2 kits por $36." />
 <link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="icon" type="image/png" href="/assets/favicon.png" />
 <link rel="stylesheet" href="../colors_and_type.css" />
@@ -27,11 +27,13 @@
   .offer-timer .box b { display:block; font-family:var(--font-sans); font-weight:900; font-size:2rem; line-height:1; }
   .offer-timer .box span { display:block; font-family:var(--font-sans); font-weight:600; font-size:.68rem; letter-spacing:.14em; text-transform:uppercase; color:var(--gold-300); margin-top:.35rem; }
   .offer-timer-label { font-family:var(--font-sans); font-weight:700; font-size:.9rem; letter-spacing:.06em; text-transform:uppercase; color:rgba(255,255,255,.72); }
+  .offer-deadline { font-family:var(--font-sans); font-weight:700; font-size:.82rem; color:var(--gold-300); margin-top:.4rem; }
   .btn-lg { font-size:1.15rem; padding:1rem 2rem; }
   .btn.is-off { background:var(--mist-2); color:var(--fg-3); box-shadow:none; pointer-events:none; cursor:not-allowed; }
   .offer-status { font-size:.9rem; color:var(--fg-3); margin-top:.9rem; }
   .offer-expired .offer-timer .box { background:var(--mist-2); color:var(--fg-3); }
   .offer-expired .offer-timer .box span { color:var(--fg-3); }
+  .combo-plus { text-align:center; font-family:var(--font-sans); font-weight:900; color:var(--gold-600); font-size:1.6rem; margin:.6rem 0; }
 </style>
 </head>
 <body>
@@ -48,7 +50,7 @@
         <button type="button" data-lang-btn="es">ES</button>
         <button type="button" data-lang-btn="en">EN</button>
       </div>
-      <a href="/mentory-express/" class="backlink" data-en='← See the kit'>← Ver el kit</a>
+      <a href="/#kits" class="backlink" data-en='← See the kits'>← Ver los kits</a>
     </div>
   </div>
 </header>
@@ -58,15 +60,15 @@
   <div class="wrap offer-hero">
     <div class="reveal">
       <span class="offer-flag" data-en='Limited-time offer'>Oferta por tiempo limitado</span>
-      <h1>Mentory Express con <span class="gold">50% de descuento</span></h1>
-      <p class="sub" style="margin:1rem auto 0;max-width:44ch;" data-en='The complete System, in one guide — the 5 tactical tools to go from chaos to execution. For a limited time, pay half.'>El Sistema completo, en una guía — las 5 herramientas tácticas para pasar del caos a la ejecución. Solo por tiempo limitado, paga la mitad.</p>
+      <h1>Los 2 kits juntos con <span class="gold">50% de descuento</span></h1>
+      <p class="sub" style="margin:1rem auto 0;max-width:48ch;" data-en='Get <strong>Mentory Express</strong> + the <strong>Starter Kit</strong> together — from planning to execution, for half the price.'>Llévate <strong>Mentory Express</strong> + el <strong>Kit de Arranque</strong> juntos — del arranque a la ejecución, a mitad de precio.</p>
 
       <div class="offer-price">
-        <span class="offer-old">$25</span>
-        <span class="offer-new">$12.50</span>
+        <span class="offer-old">$72</span>
+        <span class="offer-new">$36</span>
         <span class="offer-off">−50%</span>
       </div>
-      <span class="offer-note" data-en='USD · one-time payment · instant access'>USD · pago único · acceso inmediato</span>
+      <span class="offer-note" data-en='USD · one-time payment · both kits · instant access'>USD · pago único · los 2 kits · acceso inmediato</span>
 
       <p class="offer-timer-label" data-en='The offer ends in:'>La oferta termina en:</p>
       <div class="offer-timer" id="timer" aria-live="polite">
@@ -75,9 +77,10 @@
         <div class="box"><b id="cd-m">--</b><span data-en='min'>min</span></div>
         <div class="box"><b id="cd-s">--</b><span data-en='sec'>seg</span></div>
       </div>
+      <p class="offer-deadline" data-en='Until September 1'>Hasta el 1 de septiembre</p>
 
       <div style="margin-top:1.5rem;">
-        <a id="offer-cta" class="btn btn-lg is-off" href="#" target="_blank" rel="noopener noreferrer" data-en='Get it at 50% <span class="arrow">→</span>'>Consíguelo con 50% <span class="arrow">→</span></a>
+        <a id="offer-cta" class="btn btn-lg is-off" href="#" target="_blank" rel="noopener noreferrer" data-en='Get both kits at 50% <span class="arrow">→</span>'>Consíguelos con 50% <span class="arrow">→</span></a>
         <p class="offer-status" id="offer-status"></p>
       </div>
     </div>
@@ -89,9 +92,12 @@
   <div class="wrap">
     <div class="center reveal">
       <span class="eyebrow" data-en='What’s included'>Qué incluye</span>
-      <h2 class="section-title" data-en='The 5 tools of the System'>Las 5 herramientas del Sistema</h2>
-      <p class="lead" data-en='The same complete kit — now at half the price.'>El mismo kit completo — ahora a mitad de precio.</p>
+      <h2 class="section-title" data-en='The 2 complete kits'>Los 2 kits completos</h2>
+      <p class="lead" data-en='11 tools in total — from kickoff to execution. Now at half the price.'>11 herramientas en total — del arranque a la ejecución. Ahora a mitad de precio.</p>
     </div>
+
+    <!-- KIT 01 -->
+    <h3 class="kits-group-title reveal" data-en='Kit 01 · Mentory Express — the complete System'>Kit 01 · Mentory Express — el Sistema completo</h3>
     <div class="feature-list">
       <div class="feature reveal"><div class="fnum">1</div><div><h3 data-en='Business Roadmap'>Roadmap de Negocio</h3><p data-en='The strategic map of your project: where you’re going and how to get there.'>El mapa estratégico de tu proyecto: hacia dónde vas y cómo llegar.</p></div></div>
       <div class="feature reveal"><div class="fnum">2</div><div><h3 data-en='Strategic Prioritization Matrix'>Matriz de Priorización Estratégica</h3><p data-en='Decide what to do first and what to let go. Real focus.'>Decides qué hacer primero y qué soltar. Foco real.</p></div></div>
@@ -99,9 +105,23 @@
       <div class="feature reveal"><div class="fnum">4</div><div><h3 data-en='Tactical Implementation Manual'>Manual de Implementación Táctica</h3><p data-en='The step-by-step of execution: from plan to tasks done.'>El paso a paso de ejecución: del plan a las tareas hechas.</p></div></div>
       <div class="feature reveal"><div class="fnum">5</div><div><h3 data-en='Guide to Keep Your Momentum'>Guía para no perder el Impulso</h3><p data-en='How to sustain the pace when motivation drops.'>Cómo sostener el ritmo cuando baja la motivación.</p></div></div>
     </div>
+
+    <p class="combo-plus reveal">+</p>
+
+    <!-- KIT 02 -->
+    <h3 class="kits-group-title reveal" data-en='Kit 02 · Starter Kit — start without improvising'>Kit 02 · Kit de Arranque — inicia sin improvisar</h3>
+    <div class="feature-list">
+      <div class="feature reveal"><div class="fnum">1</div><div><h3>Project Charter</h3><p data-en='Design the strategic compass of your project: purpose, scope and formal authority.'>Diseña la brújula estratégica de tu proyecto: propósito, alcance y autoridad formal.</p></div></div>
+      <div class="feature reveal"><div class="fnum">2</div><div><h3>Business Case</h3><p data-en='Justify your project and win the sponsor’s yes before investing a single resource.'>Justifica tu proyecto y consigue el sí del sponsor antes de invertir un solo recurso.</p></div></div>
+      <div class="feature reveal"><div class="fnum">3</div><div><h3 data-en='Roles and Responsibilities'>Roles y Responsabilidades</h3><p data-en='Define who does what so no one assumes “someone else already did it.”'>Define quién hace qué para que nadie asuma que "ya lo hizo otro".</p></div></div>
+      <div class="feature reveal"><div class="fnum">4</div><div><h3 data-en='Project Kickoff'>Kickoff de Proyecto</h3><p data-en='High-impact kickoff meetings that align and inspire the team from day 1.'>Reuniones de inicio de alto impacto que alinean e inspiran al equipo desde el día 1.</p></div></div>
+      <div class="feature reveal"><div class="fnum">5</div><div><h3 data-en='Start Checklist'>Checklist de Inicio</h3><p data-en='Start with clarity and leadership, without missing any key step.'>Arranca con claridad y liderazgo, sin que se te escape ningún paso clave.</p></div></div>
+      <div class="feature reveal"><div class="fnum">6</div><div><h3 data-en='Minutes that Land'>Minutas que Impactan</h3><p data-en='Record every meeting like an expert: decisions, agreements and owners.'>Registra cada reunión como un experto: decisiones, acuerdos y responsables.</p></div></div>
+    </div>
+
     <div class="center reveal" style="margin-top:2.5rem;">
-      <a href="#" id="offer-cta-2" class="btn btn-lg is-off" target="_blank" rel="noopener noreferrer" data-en='Get it at 50% <span class="arrow">→</span>'>Consíguelo con 50% <span class="arrow">→</span></a>
-      <p class="center muted" style="margin-top:1rem;font-size:.85rem;" data-en='One-time payment. Instant access after purchase.'>Pago único. Acceso inmediato tras la compra.</p>
+      <a href="#" id="offer-cta-2" class="btn btn-lg is-off" target="_blank" rel="noopener noreferrer" data-en='Get both kits at 50% <span class="arrow">→</span>'>Consíguelos con 50% <span class="arrow">→</span></a>
+      <p class="center muted" style="margin-top:1rem;font-size:.85rem;" data-en='One-time payment. Both kits, instant access after purchase.'>Pago único. Los 2 kits, acceso inmediato tras la compra.</p>
     </div>
   </div>
 </section>
@@ -130,17 +150,16 @@
 <script src="/i18n.js"></script>
 <script>
   /* ====== CONFIGURA LA OFERTA AQUÍ ======
-     url: link de Hotmart con 50% (pay.hotmart.com/G103458142U?off=XXXX). Vacío = botón desactivado.
-     end: fecha/hora fin de la oferta, hora Venezuela (-04:00).                                    */
+     url: link de Hotmart del COMBO (2 kits) al 50% = $36. Vacío = botón desactivado.
+     end: fecha/hora fin de la oferta, hora Venezuela (-04:00).                        */
   var OFFER = {
     url: "",
-    end: "2026-09-05T23:59:00-04:00"
+    end: "2026-09-01T23:59:00-04:00"
   };
 
   (function () {
     var ctas = [document.getElementById('offer-cta'), document.getElementById('offer-cta-2')];
     var statusEl = document.getElementById('offer-status');
-    var timer = document.getElementById('timer');
     var pad = function (n) { return (n < 10 ? '0' : '') + n; };
     var endMs = new Date(OFFER.end).getTime();
 
