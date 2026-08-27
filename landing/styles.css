@@ -143,6 +143,34 @@ header.topbar {
 }
 
 /* ---------- Promo banner (validación) ---------- */
+/* ---- Offer ribbon (announcement bar) ---- */
+.offer-ribbon {
+  display: flex; align-items: center; justify-content: center;
+  gap: .55rem .9rem; flex-wrap: wrap;
+  background: var(--navy-800); color: #fff; text-decoration: none;
+  padding: .62rem 1.2rem; text-align: center; line-height: 1.3;
+  font-family: var(--font-body); font-size: .92rem;
+  border-bottom: 2px solid var(--gold-500);
+  transition: background .2s ease;
+}
+.offer-ribbon[hidden] { display: none; }
+.offer-ribbon:hover { background: var(--navy-700); }
+.offer-ribbon-tag {
+  background: var(--gold-500); color: var(--navy-700);
+  font-family: var(--font-display); font-weight: 800;
+  font-size: .72rem; letter-spacing: .06em;
+  padding: .18rem .52rem; border-radius: 5px; white-space: nowrap;
+}
+.offer-ribbon-text { font-weight: 500; }
+.offer-ribbon-text b { color: var(--gold-500); font-weight: 800; }
+.offer-ribbon-cta {
+  color: var(--gold-500); font-family: var(--font-display);
+  font-weight: 700; white-space: nowrap;
+}
+@media (max-width: 560px) {
+  .offer-ribbon { font-size: .8rem; padding: .55rem .85rem; gap: .45rem .6rem; }
+}
+
 .promo-banner {
   position: relative; overflow: hidden;
   background: var(--navy-700);
