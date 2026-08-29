@@ -24,6 +24,21 @@
 </head>
 <body>
 
+<!-- ============ OFFER RIBBON (promo combo 2 kits) ============ -->
+<a class="offer-ribbon" id="offer-ribbon" href="/oferta" data-offer-end="2026-09-01T23:59:00-04:00" hidden>
+  <span class="offer-ribbon-tag" data-en='50% OFF'>50% OFF</span>
+  <span class="offer-ribbon-text" data-en='2-kit combo — Mentory Express + Starter Kit for <b>$36</b> (was $72). Ends Sep 1.'>Combo 2 kits — Mentory Express + Kit de Arranque por <b>$36</b> (antes $72). Hasta el 1 de sep.</span>
+  <span class="offer-ribbon-cta" data-en='See the offer →'>Ver la oferta →</span>
+</a>
+<script>
+  (function () {
+    var r = document.getElementById('offer-ribbon');
+    if (!r) return;
+    var end = new Date(r.getAttribute('data-offer-end')).getTime();
+    if (isNaN(end) || Date.now() <= end) { r.hidden = false; }
+  })();
+</script>
+
 <!-- ============ PROMO BANNER (validación) ============ -->
 <section class="promo-banner" aria-label="Menttor — Del caos a la ejecución">
   <div class="promo-inner">
