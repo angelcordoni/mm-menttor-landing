@@ -19,6 +19,7 @@
           '<span class="pay-opt-main" id="pay-usd-label"></span>' +
           '<span class="pay-opt-note" id="pay-usd-note"></span>' +
         '</a>' +
+        '<p class="pay-hint" id="pay-usd-hint"></p>' +
         '<a class="pay-opt pay-opt-bs" id="pay-bs" target="_blank" rel="noopener noreferrer">' +
           '<span class="pay-opt-main" id="pay-bs-label"></span>' +
           '<span class="pay-opt-note" id="pay-bs-note"></span>' +
@@ -44,6 +45,16 @@
     if (usd) { u.href = usd; u.style.display = ''; } else { u.style.display = 'none'; }
     q('#pay-usd-label').textContent = t('Pagar en dólares (USD)', 'Pay in US dollars (USD)');
     q('#pay-usd-note').textContent = t('Tarjeta internacional · Hotmart', 'International card · Hotmart');
+
+    var hint = q('#pay-usd-hint');
+    if (usd) {
+      hint.textContent = bs
+        ? t('¿Estás en Venezuela? Es posible que necesites una VPN para completar el pago en dólares. Si lo prefieres, paga en bolívares con la opción de abajo.',
+            'In Venezuela? You may need a VPN to complete the USD payment. If you prefer, pay in bolívares using the option below.')
+        : t('¿Estás en Venezuela? Es posible que necesites una VPN para completar el pago en dólares.',
+            'In Venezuela? You may need a VPN to complete the USD payment.');
+      hint.style.display = '';
+    } else { hint.style.display = 'none'; }
 
     var b = q('#pay-bs');
     if (bs) { b.href = bs; b.style.display = ''; } else { b.style.display = 'none'; }
