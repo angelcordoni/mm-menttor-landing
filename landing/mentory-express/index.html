@@ -50,7 +50,7 @@
       <h1>Mentory Express</h1>
       <p class="sub" data-en='The complete System, in one guide. 5 tactical tools to take you from chaos to execution — step by step.'>El Sistema completo, en una guía. 5 herramientas tácticas para que pases del caos a la ejecución — paso a paso.</p>
       <div class="price-tag">$25 <small data-en='USD · one-time payment · instant access'>USD · pago único · acceso inmediato</small></div>
-      <a href="https://pay.hotmart.com/G103458142U" target="_blank" rel="noopener noreferrer" class="btn" data-en='Get the kit <span class="arrow">→</span>'>Consigue el kit <span class="arrow">→</span></a>
+      <a href="https://pay.hotmart.com/G103458142U" target="_blank" rel="noopener noreferrer" class="btn js-pay" data-usd="https://pay.hotmart.com/G103458142U" data-bs="https://www.guaybo.com/checkout?hostAlias=mm-menttor&amp;productAlias=mentory-express&amp;utm_source=copy_link&amp;utm_medium=referral&amp;currency=USD" data-en='Get the kit <span class="arrow">→</span>'>Consigue el kit <span class="arrow">→</span></a>
     </div>
   </div>
 </section>
@@ -158,7 +158,7 @@
           <li data-en='<span class="arrow">→</span> Tactical Implementation Manual'><span class="arrow">→</span> Manual de Implementación Táctica</li>
           <li data-en='<span class="arrow">→</span> Guide to Keep Your Momentum'><span class="arrow">→</span> Guía para no perder el Impulso</li>
         </ul>
-        <a href="https://pay.hotmart.com/G103458142U" target="_blank" rel="noopener noreferrer" class="btn" id="cta-buy" data-en='Get the kit <span class="arrow">→</span>'>Consigue el kit <span class="arrow">→</span></a>
+        <a href="https://pay.hotmart.com/G103458142U" target="_blank" rel="noopener noreferrer" class="btn js-pay" id="cta-buy" data-usd="https://pay.hotmart.com/G103458142U" data-bs="https://www.guaybo.com/checkout?hostAlias=mm-menttor&amp;productAlias=mentory-express&amp;utm_source=copy_link&amp;utm_medium=referral&amp;currency=USD" data-en='Get the kit <span class="arrow">→</span>'>Consigue el kit <span class="arrow">→</span></a>
       </div>
     </div>
     <p class="center muted" style="margin-top:1rem;font-size:.85rem;" data-en='Less than a dinner. One finished project already pays for it.'>Menos que una cena. Un solo proyecto terminado ya lo paga.</p>
@@ -206,6 +206,7 @@
 </footer>
 
 <script src="/i18n.js"></script>
+<script src="/pay.js" defer></script>
 <script>
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });

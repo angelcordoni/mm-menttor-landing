@@ -143,6 +143,40 @@ header.topbar {
 }
 
 /* ---------- Promo banner (validación) ---------- */
+/* ---- Payment currency modal (USD/Bs) ---- */
+.pay-overlay {
+  position: fixed; inset: 0; z-index: 1000;
+  display: flex; align-items: center; justify-content: center; padding: 1.2rem;
+  background: rgba(15, 36, 56, .62); -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px);
+}
+.pay-overlay[hidden] { display: none !important; }
+.pay-modal {
+  position: relative; width: 100%; max-width: 430px; background: #fff;
+  border-radius: var(--r-lg); padding: 2.1rem 1.7rem 1.7rem; box-shadow: var(--shadow-lg); text-align: center;
+}
+.pay-close {
+  position: absolute; top: .6rem; right: .9rem; background: none; border: none;
+  font-size: 1.7rem; line-height: 1; color: var(--fg-3); cursor: pointer; padding: .2rem .4rem;
+}
+.pay-close:hover { color: var(--navy-700); }
+.pay-eyebrow {
+  font-family: var(--font-sans); font-weight: 700; font-size: .72rem; letter-spacing: .14em;
+  color: var(--gold-600); margin: 0 0 .5rem; text-transform: uppercase;
+}
+.pay-title { font-family: var(--font-display); font-weight: 800; font-size: 1.5rem; color: var(--navy-700); margin: 0 0 .4rem; }
+.pay-sub { font-family: var(--font-body); font-size: .95rem; color: var(--fg-2); margin: 0 0 1.3rem; }
+.pay-opt {
+  display: block; text-decoration: none; border-radius: var(--r-md); padding: .85rem 1rem; margin-bottom: .7rem;
+  transition: transform .12s ease, background .12s ease; box-shadow: var(--shadow-md);
+}
+.pay-opt:hover { transform: translateY(-2px); }
+.pay-opt-main { display: block; font-family: var(--font-sans); font-weight: 700; font-size: 1.02rem; }
+.pay-opt-note { display: block; font-family: var(--font-body); font-size: .8rem; margin-top: .15rem; opacity: .88; }
+.pay-opt-usd { background: var(--navy-700); color: #fff; }
+.pay-opt-usd:hover { background: var(--navy-800); }
+.pay-opt-bs { background: var(--gold-500); color: var(--navy-800); }
+.pay-opt-bs:hover { background: var(--gold-600); }
+
 /* ---- Offer ribbon (announcement bar) ---- */
 .offer-ribbon {
   display: flex; align-items: center; justify-content: center;
