@@ -158,14 +158,17 @@
   var OFFER = {
     usd: "https://pay.hotmart.com/V107336798C",
     bs: "https://www.guaybo.com/checkout?hostAlias=mm-menttor&productAlias=50-de-descuento&utm_source=copy_link&utm_medium=referral",
+    start: "2026-10-14T18:00:00-04:00",  // la oferta se activa sola a esta hora (Venezuela)
     end: "2026-10-31T23:59:00-04:00"
   };
 
   (function () {
     var ctas = [document.getElementById('offer-cta'), document.getElementById('offer-cta-2')];
     var statusEl = document.getElementById('offer-status');
+    var labelEl = document.querySelector('.offer-timer-label');
     var pad = function (n) { return (n < 10 ? '0' : '') + n; };
     var endMs = new Date(OFFER.end).getTime();
+    var startMs = OFFER.start ? new Date(OFFER.start).getTime() : NaN;
 
     function setCtas(enabled) {
       ctas.forEach(function (c) {
@@ -189,24 +192,30 @@
 
     function tick() {
       var now = Date.now();
-      var diff = endMs - now;
-      var expired = isNaN(endMs) ? false : diff <= 0;
       var hasUrl = OFFER.usd && OFFER.usd.length > 4;
+      var notStarted = !isNaN(startMs) && now < startMs;
+      var expired = !isNaN(endMs) && now > endMs;
+      var target = notStarted ? startMs : endMs; // antes de arrancar, cuenta hacia el inicio
 
       if (!hasUrl) {
         setCtas(false);
         statusEl.textContent = window.__t ? window.__t('La oferta se activa muy pronto.', 'The offer goes live very soon.') : '';
+      } else if (notStarted) {
+        setCtas(false);
+        if (labelEl) labelEl.textContent = window.__t ? window.__t('La oferta empieza en:', 'The offer starts in:') : 'La oferta empieza en:';
+        statusEl.textContent = window.__t ? window.__t('La oferta se activa hoy a las 6:00 p. m. (hora Venezuela).', 'The offer goes live today at 6:00 p.m. (Venezuela time).') : '';
       } else if (expired) {
         setCtas(false);
         document.body.classList.add('offer-expired');
         statusEl.textContent = window.__t ? window.__t('La oferta terminó. Escríbenos si aún la quieres.', 'The offer has ended. Message us if you still want it.') : '';
       } else {
         setCtas(true);
+        if (labelEl) labelEl.textContent = window.__t ? window.__t('La oferta termina en:', 'The offer ends in:') : 'La oferta termina en:';
         statusEl.textContent = '';
       }
 
-      if (!isNaN(endMs)) {
-        var d = Math.max(0, diff);
+      if (!isNaN(target)) {
+        var d = Math.max(0, target - now);
         var days = Math.floor(d / 86400000);
         var hrs = Math.floor((d % 86400000) / 3600000);
         var min = Math.floor((d % 3600000) / 60000);
