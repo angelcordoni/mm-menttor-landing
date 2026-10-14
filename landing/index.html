@@ -25,7 +25,7 @@
 <body>
 
 <!-- ============ OFFER RIBBON (promo combo 2 kits) ============ -->
-<a class="offer-ribbon" id="offer-ribbon" href="/oferta" data-offer-end="2026-10-31T23:59:00-04:00" hidden>
+<a class="offer-ribbon" id="offer-ribbon" href="/oferta" data-offer-start="2026-10-14T18:00:00-04:00" data-offer-end="2026-10-31T23:59:00-04:00" hidden>
   <span class="offer-ribbon-tag" data-en='50% OFF'>50% OFF</span>
   <span class="offer-ribbon-text" data-en='2-kit combo — Mentory Express + Starter Kit for <b>$36</b> (was $72). Ends Oct 31.'>Combo 2 kits — Mentory Express + Kit de Arranque por <b>$36</b> (antes $72). Hasta el 31 de oct.</span>
   <span class="offer-ribbon-cta" data-en='See the offer →'>Ver la oferta →</span>
@@ -34,8 +34,18 @@
   (function () {
     var r = document.getElementById('offer-ribbon');
     if (!r) return;
+    var start = new Date(r.getAttribute('data-offer-start')).getTime();
     var end = new Date(r.getAttribute('data-offer-end')).getTime();
-    if (isNaN(end) || Date.now() <= end) { r.hidden = false; }
+    var now = Date.now();
+    var afterStart = isNaN(start) || now >= start;
+    var beforeEnd = isNaN(end) || now <= end;
+    if (afterStart && beforeEnd) {
+      r.hidden = false;
+    } else if (!afterStart && beforeEnd) {
+      // aún no arranca: muéstrala sola al llegar la hora de inicio (si es dentro de ~24 h)
+      var ms = start - now;
+      if (ms > 0 && ms < 86400000) { setTimeout(function () { r.hidden = false; }, ms); }
+    }
   })();
 </script>
 
