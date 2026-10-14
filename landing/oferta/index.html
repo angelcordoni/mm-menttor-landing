@@ -148,12 +148,16 @@
 </footer>
 
 <script src="/i18n.js"></script>
+<script src="/pay.js" defer></script>
 <script>
   /* ====== CONFIGURA LA OFERTA AQUÍ ======
-     url: link de Hotmart del COMBO (2 kits) al 50% = $36. Vacío = botón desactivado.
-     end: fecha/hora fin de la oferta, hora Venezuela (-04:00).                        */
+     usd: link de Hotmart del COMBO (2 kits) al 50% = $36 (pago en dólares).
+     bs:  link de Guaybo del COMBO (pago en bolívares). Vacío = solo USD.
+     end: fecha/hora fin de la oferta, hora Venezuela (-04:00).
+     Al pulsar el botón se abre el selector de moneda (USD/Bs) vía pay.js.    */
   var OFFER = {
-    url: "https://pay.hotmart.com/V107336798C",
+    usd: "https://pay.hotmart.com/V107336798C",
+    bs: "https://www.guaybo.com/checkout?hostAlias=mm-menttor&productAlias=50-de-descuento&utm_source=copy_link&utm_medium=referral",
     end: "2026-10-31T23:59:00-04:00"
   };
 
@@ -166,8 +170,20 @@
     function setCtas(enabled) {
       ctas.forEach(function (c) {
         if (!c) return;
-        if (enabled) { c.classList.remove('is-off'); c.href = OFFER.url; }
-        else { c.classList.add('is-off'); c.href = '#'; }
+        if (enabled) {
+          c.classList.remove('is-off');
+          c.classList.add('js-pay');
+          c.setAttribute('data-usd', OFFER.usd);
+          if (OFFER.bs) { c.setAttribute('data-bs', OFFER.bs); }
+          c.href = OFFER.usd; // respaldo si el JS del modal no carga
+          c.target = '_blank';
+        } else {
+          c.classList.add('is-off');
+          c.classList.remove('js-pay');
+          c.removeAttribute('data-usd');
+          c.removeAttribute('data-bs');
+          c.href = '#';
+        }
       });
     }
 
@@ -175,7 +191,7 @@
       var now = Date.now();
       var diff = endMs - now;
       var expired = isNaN(endMs) ? false : diff <= 0;
-      var hasUrl = OFFER.url && OFFER.url.length > 4;
+      var hasUrl = OFFER.usd && OFFER.usd.length > 4;
 
       if (!hasUrl) {
         setCtas(false);
