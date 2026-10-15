@@ -223,6 +223,7 @@
     var submit = document.getElementById('diag-submit');
     var quiz = document.getElementById('diag-quiz');
     var results = document.getElementById('diag-results');
+    var hero = document.querySelector('.detail-hero');
 
     function answered() { return qs.filter(function (q) { return q.querySelector('input:checked'); }).length; }
     function updateBar() { bar.style.width = Math.round(answered() / qs.length * 100) + '%'; }
@@ -240,6 +241,7 @@
       var el = results.querySelector('[data-result="' + key + '"]');
       if (el) el.classList.add('show');
       results.style.display = 'block';
+      if (hero) hero.style.display = 'none';
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -267,6 +269,7 @@
       quiz.querySelectorAll('input:checked').forEach(function (i) { i.checked = false; });
       results.style.display = 'none';
       results.querySelectorAll('.result').forEach(function (r) { r.classList.remove('show'); });
+      if (hero) hero.style.display = '';
       quiz.style.display = 'block';
       updateBar();
       errEl.textContent = '';
