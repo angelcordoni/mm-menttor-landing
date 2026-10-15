@@ -29,9 +29,9 @@
   .result { display:none; }
   .result.show { display:block; animation: rfade .4s ease; }
   @keyframes rfade { from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:none;} }
-  .level-badge { display:inline-block; font-family:var(--font-sans); font-weight:800; font-size:.8rem; letter-spacing:.08em; text-transform:uppercase; color:var(--navy-900); background:var(--gold-500); padding:.4rem .9rem; border-radius:var(--r-pill); }
-  .level-title { font-family:var(--font-display); font-weight:900; font-size:1.9rem; line-height:1.1; color:var(--navy-700); margin:1rem 0 .6rem; }
-  .level-desc { font-family:var(--font-body); font-size:1.05rem; color:var(--fg-2); max-width:52ch; margin:0 auto 2rem; }
+  .level-badge { display:inline-block; font-family:var(--font-sans); font-weight:800; font-size:1.15rem; letter-spacing:.06em; text-transform:uppercase; color:var(--navy-900); background:var(--gold-500); padding:.65rem 1.6rem; border-radius:var(--r-pill); box-shadow:var(--shadow-sm); }
+  .level-title { font-family:var(--font-display); font-weight:900; font-size:clamp(2.3rem, 5.5vw, 3.4rem); line-height:1.06; color:var(--navy-700); margin:1.4rem 0 .8rem; }
+  .level-desc { font-family:var(--font-body); font-size:1.12rem; color:var(--fg-2); max-width:54ch; margin:0 auto 2.2rem; }
   .rec-card { background:#fff; border:1px solid var(--line-mist); border-radius: var(--r-lg); box-shadow: var(--shadow-md); padding:1.8rem 1.6rem; max-width:560px; margin:0 auto; text-align:left; }
   .rec-eyebrow { font-family:var(--font-sans); font-weight:700; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--gold-600); }
   .rec-name { font-family:var(--font-display); font-weight:800; font-size:1.5rem; color:var(--navy-700); margin:.25rem 0 .5rem; }
@@ -142,6 +142,25 @@
       </div>
     </div>
 
+    <!-- ======= EMAIL GATE ======= -->
+    <div id="diag-gate" class="center" style="display:none;">
+      <span class="eyebrow" data-en='Your result is ready'>Tu resultado está listo</span>
+      <h2 class="section-title" data-en='Where do we send your result?'>¿A dónde te enviamos tu resultado?</h2>
+      <p class="lead" style="max-width:44ch;margin:0 auto 1.6rem;" data-en='Leave your email to see your PM level and your recommended plan — plus we’ll send you the free project management kit.'>Déjanos tu correo para ver tu nivel y tu plan recomendado — y de paso te enviamos el kit de gestión de proyectos gratis.</p>
+      <form class="form-card" id="diag-form" style="max-width:420px;margin:0 auto;text-align:left;">
+        <div class="form-row">
+          <label for="dg-nombre" data-en='Name'>Nombre</label>
+          <input id="dg-nombre" name="first_name" type="text" autocomplete="given-name" />
+        </div>
+        <div class="form-row">
+          <label for="dg-email" data-en='Email'>Email</label>
+          <input id="dg-email" name="email_address" type="email" autocomplete="email" required />
+        </div>
+        <button type="submit" class="btn" id="dg-submit" data-en='See my result <span class="arrow">→</span>'>Ver mi resultado <span class="arrow">→</span></button>
+        <p class="form-note" id="dg-status" data-en='We’ll show your result and email you the free kit. No spam.'>Te mostramos tu resultado y te enviamos el kit gratis. Sin spam.</p>
+      </form>
+    </div>
+
     <!-- ======= RESULTS ======= -->
     <div id="diag-results">
 
@@ -224,6 +243,11 @@
     var quiz = document.getElementById('diag-quiz');
     var results = document.getElementById('diag-results');
     var hero = document.querySelector('.detail-hero');
+    var gate = document.getElementById('diag-gate');
+    var gateForm = document.getElementById('diag-form');
+    var gateBtn = document.getElementById('dg-submit');
+    var pendingKey = null;
+    var ML_FORM_ACTION = 'https://assets.mailerlite.com/jsonp/2465760/forms/191086495499552220/subscribe';
 
     function answered() { return qs.filter(function (q) { return q.querySelector('input:checked'); }).length; }
     function updateBar() { bar.style.width = Math.round(answered() / qs.length * 100) + '%'; }
@@ -262,13 +286,56 @@
       });
       // 7 preguntas · 1-3 pts · rango 7-21
       var key = score <= 12 ? 'junior' : (score <= 17 ? 'intermedio' : 'avanzado');
-      showResult(key);
+      // en vez de mostrar el resultado directo, pedimos el correo
+      pendingKey = key;
+      quiz.style.display = 'none';
+      if (hero) hero.style.display = 'none';
+      gate.style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    gateForm.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      var data = Object.fromEntries(new FormData(gateForm));
+      var original = gateBtn.innerHTML;
+      gateBtn.disabled = true;
+      gateBtn.textContent = window.__t ? window.__t('Enviando…', 'Sending…') : 'Enviando…';
+      try {
+        // 1) Suscripción a MailerLite (misma lista que el kit gratis)
+        var mlBody = new URLSearchParams({
+          'fields[email]': data.email_address,
+          'fields[name]': data.first_name || '',
+          'ml-submit': '1',
+          'anticsrf': 'true'
+        });
+        var mlReq = fetch(ML_FORM_ACTION, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: mlBody });
+        // 2) Respaldo a mmmenttor@gmail.com vía Web3Forms (incluye el nivel)
+        var backupReq = fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            access_key: '410784cf-1835-4fa6-8d28-55a7d510857c',
+            from_name: 'Menttor — Diagnóstico PM',
+            subject: 'Nuevo registro · Diagnóstico PM (nivel: ' + pendingKey + ')',
+            nombre: data.first_name || '',
+            email: data.email_address,
+            nivel: pendingKey
+          })
+        });
+        await Promise.allSettled([mlReq, backupReq]);
+      } catch (err) { /* no bloqueamos el resultado si falla el envío */ }
+      gateBtn.disabled = false;
+      gateBtn.innerHTML = original;
+      gate.style.display = 'none';
+      showResult(pendingKey);
     });
 
     document.getElementById('diag-restart').addEventListener('click', function () {
       quiz.querySelectorAll('input:checked').forEach(function (i) { i.checked = false; });
       results.style.display = 'none';
       results.querySelectorAll('.result').forEach(function (r) { r.classList.remove('show'); });
+      gate.style.display = 'none';
+      if (gateForm) gateForm.reset();
       if (hero) hero.style.display = '';
       quiz.style.display = 'block';
       updateBar();
