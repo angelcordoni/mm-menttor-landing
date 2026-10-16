@@ -3,42 +3,75 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Diagnóstico PM — ¿Qué tan preparado estás para liderar un proyecto? | Menttor</title>
-<meta name="description" content="Test gratis de 7 preguntas: descubre si eres PM Junior, Intermedio o Avanzado y qué necesitas para dar el siguiente salto como Project Manager." />
+<title>Diagnóstico PM — ¿Qué tan preparado estás para liderar tu próximo proyecto? | Menttor</title>
+<meta name="description" content="Diagnóstico de 25 preguntas en 5 dimensiones. Descubre tu nivel como Project Manager (Explorer, Practitioner, Professional o Strategic Leader) y tu ruta recomendada." />
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Diagnóstico PM — ¿Qué tan preparado estás para liderar un proyecto?" />
-<meta property="og:description" content="Responde 7 preguntas y descubre tu nivel como Project Manager. Gratis, en 2 minutos." />
+<meta property="og:title" content="Diagnóstico PM — ¿Qué tan preparado estás para liderar tu próximo proyecto?" />
+<meta property="og:description" content="25 preguntas, 5 dimensiones, 4 niveles. Descubre tu nivel como Project Manager y tu ruta de desarrollo." />
 <meta property="og:image" content="https://mm-menttor-landing-7c4m.vercel.app/assets/og-image.png" />
 <link rel="stylesheet" href="../colors_and_type.css" />
 <link rel="stylesheet" href="../styles.css" />
 <style>
-  .diag { max-width: 780px; margin: 0 auto; }
-  .q { background:#fff; border:1px solid var(--line-mist); border-radius: var(--r-lg); padding:1.5rem 1.6rem; margin-bottom:1.1rem; box-shadow: var(--shadow-sm); }
-  .q-num { font-family:var(--font-sans); font-weight:700; font-size:.75rem; letter-spacing:.1em; text-transform:uppercase; color:var(--gold-600); }
-  .q-title { font-family:var(--font-display); font-weight:800; font-size:1.16rem; line-height:1.3; color:var(--navy-700); margin:.35rem 0 1rem; }
-  .opt { display:flex; gap:.7rem; align-items:flex-start; border:1.5px solid var(--line-mist); border-radius:12px; padding:.78rem 1rem; margin-bottom:.6rem; cursor:pointer; font-family:var(--font-body); font-size:.98rem; color:var(--ink); transition: border-color .15s ease, background .15s ease; }
-  .opt:hover { border-color: var(--gold-300); }
-  .opt input { accent-color: var(--navy-700); width:18px; height:18px; margin-top:2px; flex-shrink:0; cursor:pointer; }
-  .opt:has(input:checked) { border-color: var(--gold-500); background: var(--cream); }
+  .diag { max-width: 820px; margin: 0 auto; }
+  .diag-progress { position: sticky; top: 0; z-index: 6; padding: .9rem 0; background: var(--paper, #faf8f3); }
+  .diag-progress-bar { height: 7px; background: var(--line-mist); border-radius: 99px; overflow: hidden; }
+  .diag-progress-bar > i { display: block; height: 100%; width: 0; background: var(--gold-500); transition: width .35s ease; }
+  .diag-progress-txt { font-family: var(--font-sans); font-weight: 700; font-size: .78rem; letter-spacing: .04em; color: var(--fg-3); margin-top: .5rem; text-transform: uppercase; }
+  .step-head { margin: 1.4rem 0 1.4rem; }
+  .step-eyebrow { font-family: var(--font-sans); font-weight: 700; font-size: .76rem; letter-spacing: .1em; text-transform: uppercase; color: var(--gold-600); }
+  .step-title { font-family: var(--font-display); font-weight: 800; font-size: 1.6rem; line-height: 1.15; color: var(--navy-700); margin-top: .35rem; }
+  .q { background: #fff; border: 1px solid var(--line-mist); border-radius: var(--r-lg); padding: 1.4rem 1.5rem; margin-bottom: 1rem; box-shadow: var(--shadow-sm); }
   .q.q-missing { border-color: var(--gold-500); box-shadow: 0 0 0 2px var(--gold-100); }
-  .diag-actions { text-align:center; margin-top:1.8rem; }
-  .diag-err { color:#9a3412; font-size:.9rem; margin-top:.9rem; min-height:1.1rem; }
-  .diag-progress { position:sticky; top:0; z-index:5; height:5px; background:var(--line-mist); border-radius:99px; overflow:hidden; margin-bottom:1.6rem; }
-  .diag-progress > i { display:block; height:100%; width:0; background:var(--gold-500); transition:width .3s ease; }
+  .q-title { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; line-height: 1.3; color: var(--navy-700); margin: 0 0 1rem; }
+  .opt { display: flex; gap: .7rem; align-items: flex-start; border: 1.5px solid var(--line-mist); border-radius: 12px; padding: .72rem .95rem; margin-bottom: .55rem; cursor: pointer; font-family: var(--font-body); font-size: .96rem; color: var(--ink); transition: border-color .15s ease, background .15s ease; }
+  .opt:hover { border-color: var(--gold-300); }
+  .opt input { accent-color: var(--navy-700); width: 18px; height: 18px; margin-top: 2px; flex-shrink: 0; cursor: pointer; }
+  .opt:has(input:checked) { border-color: var(--gold-500); background: var(--cream); }
+  .diag-nav { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-top: 1.6rem; flex-wrap: wrap; }
+  .diag-err { color: #9a3412; font-size: .9rem; margin-top: 1rem; min-height: 1.1rem; text-align: center; }
+  /* contact */
+  .contact-intro { text-align: center; max-width: 46ch; margin: 0 auto 1.6rem; }
+  .diag-field { margin-bottom: 1.1rem; }
+  .diag-field label { display: block; font-family: var(--font-sans); font-weight: 700; font-size: .85rem; color: var(--navy-700); margin-bottom: .4rem; }
+  .diag-field input, .diag-field select { width: 100%; font-family: var(--font-body); font-size: 1rem; padding: .7rem .85rem; border: 1.5px solid var(--line-mist); border-radius: 12px; background: #fff; color: var(--ink); }
+  .diag-field input:focus, .diag-field select:focus { outline: none; border-color: var(--gold-500); }
+  .diag-consent { display: flex; gap: .6rem; align-items: flex-start; font-family: var(--font-body); font-size: .9rem; color: var(--fg-2); margin: 1rem 0 .4rem; }
+  .diag-consent input { width: 18px; height: 18px; margin-top: 2px; flex-shrink: 0; accent-color: var(--navy-700); }
+  .diag-note { font-size: .78rem; color: var(--fg-3); text-align: center; margin-top: 1.2rem; }
   /* result */
-  .result { display:none; }
-  .result.show { display:block; animation: rfade .4s ease; }
-  @keyframes rfade { from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:none;} }
-  .level-badge { display:inline-block; font-family:var(--font-sans); font-weight:800; font-size:1.15rem; letter-spacing:.06em; text-transform:uppercase; color:var(--navy-900); background:var(--gold-500); padding:.65rem 1.6rem; border-radius:var(--r-pill); box-shadow:var(--shadow-sm); }
-  .level-title { font-family:var(--font-display); font-weight:900; font-size:clamp(2.3rem, 5.5vw, 3.4rem); line-height:1.06; color:var(--navy-700); margin:1.4rem 0 .8rem; }
-  .level-desc { font-family:var(--font-body); font-size:1.12rem; color:var(--fg-2); max-width:54ch; margin:0 auto 2.2rem; }
-  .rec-card { background:#fff; border:1px solid var(--line-mist); border-radius: var(--r-lg); box-shadow: var(--shadow-md); padding:1.8rem 1.6rem; max-width:560px; margin:0 auto; text-align:left; }
-  .rec-eyebrow { font-family:var(--font-sans); font-weight:700; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--gold-600); }
-  .rec-name { font-family:var(--font-display); font-weight:800; font-size:1.5rem; color:var(--navy-700); margin:.25rem 0 .5rem; }
-  .rec-why { font-family:var(--font-body); font-size:.98rem; color:var(--fg-2); margin-bottom:1.3rem; }
-  .rec-extra { font-size:.86rem; color:var(--fg-3); margin-top:.9rem; }
-  .diag-restart { margin-top:1.6rem; }
-  .diag-restart a { cursor:pointer; }
+  .result { display: none; }
+  .result.show { display: block; animation: rfade .45s ease; }
+  @keyframes rfade { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+  .level-badge { display: inline-block; font-family: var(--font-sans); font-weight: 800; font-size: 1.15rem; letter-spacing: .05em; text-transform: uppercase; color: var(--navy-900); background: var(--gold-500); padding: .65rem 1.6rem; border-radius: var(--r-pill); box-shadow: var(--shadow-sm); }
+  .score-big { font-family: var(--font-display); font-weight: 900; font-size: clamp(3.4rem, 9vw, 5rem); line-height: 1; color: var(--navy-700); margin: 1.2rem 0 .2rem; }
+  .score-big small { font-size: .35em; font-weight: 800; color: var(--fg-3); }
+  .level-title { font-family: var(--font-display); font-weight: 900; font-size: clamp(1.9rem, 4.5vw, 2.7rem); line-height: 1.1; color: var(--navy-700); margin: .6rem auto .7rem; max-width: 22ch; }
+  .level-desc { font-family: var(--font-body); font-size: 1.1rem; color: var(--fg-2); max-width: 56ch; margin: 0 auto 2.2rem; }
+  .res-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; text-align: left; margin: 0 auto 2rem; max-width: 760px; }
+  .res-card { background: #fff; border: 1px solid var(--line-mist); border-radius: var(--r-lg); padding: 1.4rem 1.5rem; box-shadow: var(--shadow-sm); }
+  .res-card h3 { font-family: var(--font-sans); font-weight: 800; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--gold-600); margin: 0 0 .9rem; }
+  .dim-row { margin-bottom: .85rem; }
+  .dim-row:last-child { margin-bottom: 0; }
+  .dim-row .dim-top { display: flex; justify-content: space-between; font-family: var(--font-body); font-size: .88rem; color: var(--ink); margin-bottom: .3rem; }
+  .dim-row .dim-top b { color: var(--navy-700); }
+  .dim-bar { height: 8px; background: var(--line-mist); border-radius: 99px; overflow: hidden; }
+  .dim-bar > i { display: block; height: 100%; background: var(--gold-500); border-radius: 99px; }
+  .dim-bar.low > i { background: var(--navy-700); }
+  .res-list { list-style: none; padding: 0; margin: 0; }
+  .res-list li { font-family: var(--font-body); font-size: .96rem; color: var(--fg-2); padding-left: 1.3rem; position: relative; margin-bottom: .55rem; }
+  .res-list li::before { content: "→"; position: absolute; left: 0; color: var(--gold-500); font-weight: 700; }
+  .prio-card { border-color: var(--gold-300); background: var(--gold-100); }
+  .prio-card .prio-name { font-family: var(--font-display); font-weight: 800; color: var(--navy-700); font-size: 1.02rem; }
+  .prio-card .prio-desc { font-family: var(--font-body); font-size: .9rem; color: var(--fg-2); margin: .15rem 0 .9rem; }
+  .plan7 { background: var(--navy-700); color: #fff; border-radius: var(--r-lg); padding: 1.6rem 1.7rem; max-width: 760px; margin: 0 auto 2rem; text-align: left; }
+  .plan7 h3 { font-family: var(--font-sans); font-weight: 800; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--gold-300); margin: 0 0 .9rem; }
+  .plan7 p { font-family: var(--font-body); font-size: 1rem; line-height: 1.6; color: #fff; margin: 0; }
+  .rec-card { background: #fff; border: 1px solid var(--line-mist); border-radius: var(--r-lg); box-shadow: var(--shadow-md); padding: 1.9rem 1.7rem; max-width: 560px; margin: 0 auto; }
+  .rec-eyebrow { font-family: var(--font-sans); font-weight: 700; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--gold-600); }
+  .rec-name { font-family: var(--font-display); font-weight: 800; font-size: 1.5rem; color: var(--navy-700); margin: .25rem 0 1.2rem; }
+  .diag-restart { margin-top: 1.8rem; }
+  .diag-restart a { cursor: pointer; }
+  @media (max-width: 640px) { .res-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -47,168 +80,31 @@
   <div class="wrap">
     <a href="/" class="brand-lockup" aria-label="Menttor — Gestión de proyectos">
       <span class="logo-iso"><b>MM</b></span>
-      <span class="logo-word"><span class="n">Menttor</span><span class="m" data-en='PROJECT MANAGEMENT'>GESTIÓN DE PROYECTOS</span></span>
+      <span class="logo-word"><span class="n">Menttor</span><span class="m">GESTIÓN DE PROYECTOS</span></span>
     </a>
     <div class="topbar-actions">
-      <div class="lang-switch" role="group" aria-label="Language / Idioma">
-        <button type="button" data-lang-btn="es">ES</button>
-        <button type="button" data-lang-btn="en">EN</button>
-      </div>
       <a href="https://www.instagram.com/mmmenttor/" target="_blank" rel="noopener noreferrer" class="ig-top">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
         <span class="ig-label">@mmmenttor</span>
       </a>
-      <a href="/#kits" class="backlink" data-en='← Back to the kits'>← Volver a los kits</a>
+      <a href="/#kits" class="backlink">← Volver a los kits</a>
     </div>
   </div>
 </header>
 
-<section class="detail-hero">
+<section class="detail-hero" id="diag-hero">
   <div class="wrap">
-    <div class="reveal center">
-      <span class="eyebrow" data-en='PM Diagnostic'>Diagnóstico PM</span>
-      <h1 data-en='How ready are you to lead a project?'>¿Qué tan preparado estás para liderar un proyecto?</h1>
-      <p class="sub" style="margin-left:auto;margin-right:auto;" data-en='Answer 7 quick questions and find out your level as a Project Manager — and what you need to take the next leap. Free, 2 minutes.'>Responde 7 preguntas rápidas y descubre tu nivel como Project Manager — y qué necesitas para dar el siguiente salto. Gratis, en 2 minutos.</p>
+    <div class="center">
+      <span class="eyebrow">Diagnóstico PM</span>
+      <h1>¿Qué tan preparado estás para liderar tu próximo proyecto?</h1>
+      <p class="sub" style="margin-left:auto;margin-right:auto;">25 preguntas · 5 dimensiones · 5 a 7 minutos. Descubre tu nivel como Project Manager y tu ruta de desarrollo.</p>
     </div>
   </div>
 </section>
 
 <section>
   <div class="wrap diag">
-
-    <!-- ======= TEST ======= -->
-    <div id="diag-quiz">
-      <div class="diag-progress" aria-hidden="true"><i id="diag-bar"></i></div>
-
-      <div class="q" data-q>
-        <div class="q-num">01</div>
-        <p class="q-title" data-en='When you’re assigned a new project, the first thing you do is:'>Cuando te asignan un proyecto nuevo, lo primero que haces es:</p>
-        <label class="opt"><input type="radio" name="q1" data-points="1"><span data-en='Jump straight into tasks.'>Empiezo a ejecutar tareas de una vez.</span></label>
-        <label class="opt"><input type="radio" name="q1" data-points="2"><span data-en='Make a quick to-do list.'>Hago una lista rápida de pendientes.</span></label>
-        <label class="opt"><input type="radio" name="q1" data-points="3"><span data-en='Define the objective, scope and owners before starting.'>Defino objetivo, alcance y responsables antes de arrancar.</span></label>
-      </div>
-
-      <div class="q" data-q>
-        <div class="q-num">02</div>
-        <p class="q-title" data-en='Do you have a clear method to prioritize what to do first?'>¿Tienes un método claro para priorizar qué hacer primero?</p>
-        <label class="opt"><input type="radio" name="q2" data-points="1"><span data-en='No, I just put out fires.'>No, voy apagando incendios.</span></label>
-        <label class="opt"><input type="radio" name="q2" data-points="2"><span data-en='Sort of — by intuition.'>Más o menos, por intuición.</span></label>
-        <label class="opt"><input type="radio" name="q2" data-points="3"><span data-en='Yes, I use clear criteria and a prioritization matrix.'>Sí, uso criterios claros y una matriz de priorización.</span></label>
-      </div>
-
-      <div class="q" data-q>
-        <div class="q-num">03</div>
-        <p class="q-title" data-en='When the project drifts off plan:'>Cuando el proyecto se desvía del plan:</p>
-        <label class="opt"><input type="radio" name="q3" data-points="1"><span data-en='I stress and react on the fly.'>Me estreso y reacciono sobre la marcha.</span></label>
-        <label class="opt"><input type="radio" name="q3" data-points="2"><span data-en='I notice it late but fix it.'>Lo noto tarde, pero lo corrijo.</span></label>
-        <label class="opt"><input type="radio" name="q3" data-points="3"><span data-en='I have indicators that warn me in time and I adjust.'>Tengo indicadores que me avisan a tiempo y ajusto.</span></label>
-      </div>
-
-      <div class="q" data-q>
-        <div class="q-num">04</div>
-        <p class="q-title" data-en='How clear is who does what on your team?'>¿Qué tan claro tienes quién hace qué en tu equipo?</p>
-        <label class="opt"><input type="radio" name="q4" data-points="1"><span data-en='There’s confusion — tasks get duplicated or dropped.'>Hay confusión: se repiten o se caen tareas.</span></label>
-        <label class="opt"><input type="radio" name="q4" data-points="2"><span data-en='Clear for the big stuff, not the detail.'>Claro para lo grande, no para el detalle.</span></label>
-        <label class="opt"><input type="radio" name="q4" data-points="3"><span data-en='Fully: roles and responsibilities are defined.'>Totalmente: roles y responsabilidades definidos.</span></label>
-      </div>
-
-      <div class="q" data-q>
-        <div class="q-num">05</div>
-        <p class="q-title" data-en='Your project meetings:'>Tus reuniones de proyecto:</p>
-        <label class="opt"><input type="radio" name="q5" data-points="1"><span data-en='Tend to be long and without clear conclusions.'>Suelen ser largas y sin conclusiones claras.</span></label>
-        <label class="opt"><input type="radio" name="q5" data-points="2"><span data-en='Get the job done, but agreements aren’t always written down.'>Cumplen, pero no siempre quedan acuerdos por escrito.</span></label>
-        <label class="opt"><input type="radio" name="q5" data-points="3"><span data-en='Have an agenda, decisions and documented owners.'>Tienen agenda, decisiones y responsables documentados.</span></label>
-      </div>
-
-      <div class="q" data-q>
-        <div class="q-num">06</div>
-        <p class="q-title" data-en='How do you handle project risks?'>¿Cómo manejas los riesgos del proyecto?</p>
-        <label class="opt"><input type="radio" name="q6" data-points="1"><span data-en='I deal with them when they show up.'>Los enfrento cuando aparecen.</span></label>
-        <label class="opt"><input type="radio" name="q6" data-points="2"><span data-en='I identify the obvious ones.'>Identifico los obvios.</span></label>
-        <label class="opt"><input type="radio" name="q6" data-points="3"><span data-en='I anticipate them and have a mitigation plan.'>Los anticipo y tengo plan de mitigación.</span></label>
-      </div>
-
-      <div class="q" data-q>
-        <div class="q-num">07</div>
-        <p class="q-title" data-en='When you present your project to leadership/the sponsor:'>Cuando presentas tu proyecto a dirección o al sponsor:</p>
-        <label class="opt"><input type="radio" name="q7" data-points="1"><span data-en='I struggle to justify its value and convey control.'>Me cuesta justificar el valor y transmitir control.</span></label>
-        <label class="opt"><input type="radio" name="q7" data-points="2"><span data-en='I explain it, though I lack structure.'>Lo explico, aunque me falta estructura.</span></label>
-        <label class="opt"><input type="radio" name="q7" data-points="3"><span data-en='I present with a clear business case and convey leadership.'>Presento con un business case claro y transmito liderazgo.</span></label>
-      </div>
-
-      <div class="diag-actions">
-        <button type="button" id="diag-submit" class="btn btn-lg" data-en='See my result <span class="arrow">→</span>'>Ver mi resultado <span class="arrow">→</span></button>
-        <p class="diag-err" id="diag-err" role="alert"></p>
-      </div>
-    </div>
-
-    <!-- ======= EMAIL GATE ======= -->
-    <div id="diag-gate" class="center" style="display:none;">
-      <span class="eyebrow" data-en='Your result is ready'>Tu resultado está listo</span>
-      <h2 class="section-title" data-en='Where do we send your result?'>¿A dónde te enviamos tu resultado?</h2>
-      <p class="lead" style="max-width:44ch;margin:0 auto 1.6rem;" data-en='Leave your email to see your PM level and your recommended plan — plus we’ll send you the free project management kit.'>Déjanos tu correo para ver tu nivel y tu plan recomendado — y de paso te enviamos el kit de gestión de proyectos gratis.</p>
-      <form class="form-card" id="diag-form" style="max-width:420px;margin:0 auto;text-align:left;">
-        <div class="form-row">
-          <label for="dg-nombre" data-en='Name'>Nombre</label>
-          <input id="dg-nombre" name="first_name" type="text" autocomplete="given-name" />
-        </div>
-        <div class="form-row">
-          <label for="dg-email" data-en='Email'>Email</label>
-          <input id="dg-email" name="email_address" type="email" autocomplete="email" required />
-        </div>
-        <button type="submit" class="btn" id="dg-submit" data-en='See my result <span class="arrow">→</span>'>Ver mi resultado <span class="arrow">→</span></button>
-        <p class="form-note" id="dg-status" data-en='We’ll show your result and email you the free kit. No spam.'>Te mostramos tu resultado y te enviamos el kit gratis. Sin spam.</p>
-      </form>
-    </div>
-
-    <!-- ======= RESULTS ======= -->
-    <div id="diag-results">
-
-      <!-- JUNIOR -->
-      <div class="result center" data-result="junior">
-        <span class="level-badge">PM Junior</span>
-        <h2 class="level-title" data-en='You’re getting started — with drive, but without structure.'>Vas arrancando — con ganas, pero sin estructura.</h2>
-        <p class="level-desc" data-en='You have the attitude, but you still improvise when starting and running your projects. The good news: this is learned fast with the right method.'>Tienes la actitud, pero todavía improvisas al iniciar y llevar tus proyectos. Lo bueno: esto se aprende rápido con el método correcto.</p>
-        <div class="rec-card">
-          <p class="rec-eyebrow" data-en='Recommended for you'>Recomendado para ti</p>
-          <p class="rec-name" data-en='Starter Kit'>Kit de Arranque</p>
-          <p class="rec-why" data-en='Learn to start any project with order and authority: Charter, Kickoff, Roles, Business Case and more. The foundations that separate an improviser from a leader.'>Aprende a iniciar cualquier proyecto con orden y autoridad: Charter, Kickoff, Roles, Business Case y más. Las bases que separan a un improvisador de un líder.</p>
-          <a href="/starter-kit/" class="btn" data-en='See the Starter Kit <span class="arrow">→</span>'>Ver el Kit de Arranque <span class="arrow">→</span></a>
-          <p class="rec-extra" data-en='Prefer to start free? <a href="/#recurso-gratis">Download the free kit →</a>'>¿Prefieres empezar gratis? <a href="/#recurso-gratis">Descarga el kit gratuito →</a></p>
-        </div>
-      </div>
-
-      <!-- INTERMEDIO -->
-      <div class="result center" data-result="intermedio">
-        <span class="level-badge">PM Intermedio</span>
-        <h2 class="level-title" data-en='You know how to start. You’re missing the finish.'>Ya sabes arrancar. Te falta llevarlo hasta el final.</h2>
-        <p class="level-desc" data-en='You start well, but you lose focus in execution: priorities, pace and closing. You need a system that holds you from start to finish.'>Inicias bien, pero pierdes foco en la ejecución: prioridades, ritmo y cierre. Necesitas un sistema que te sostenga de principio a fin.</p>
-        <div class="rec-card">
-          <p class="rec-eyebrow" data-en='Recommended for you'>Recomendado para ti</p>
-          <p class="rec-name" data-en='Mentory Express'>Mentory Express</p>
-          <p class="rec-why" data-en='The complete system in 5 tactical tools to prioritize, execute and keep your momentum — so your projects actually get finished.'>El Sistema completo en 5 herramientas tácticas para priorizar, ejecutar y no perder el impulso — para que tus proyectos sí se terminen.</p>
-          <a href="/mentory-express/" class="btn" data-en='See Mentory Express <span class="arrow">→</span>'>Ver Mentory Express <span class="arrow">→</span></a>
-          <p class="rec-extra" data-en='Want it all? <a href="/oferta">Both kits at 50% off →</a>'>¿Lo quieres todo? <a href="/oferta">Los 2 kits con 50% de descuento →</a></p>
-        </div>
-      </div>
-
-      <!-- AVANZADO -->
-      <div class="result center" data-result="avanzado">
-        <span class="level-badge">PM Avanzado</span>
-        <h2 class="level-title" data-en='You lead with method. Now systematize it and stand out.'>Lideras con método. Ahora, sistematiza y destaca.</h2>
-        <p class="level-desc" data-en='You run your projects with direction. The next level is having the whole system at hand and projecting the image of a PM that companies want to promote.'>Manejas tus proyectos con dirección. El siguiente nivel es tener todo el sistema a mano y proyectar la imagen de PM que las empresas quieren promover.</p>
-        <div class="rec-card">
-          <p class="rec-eyebrow" data-en='Recommended for you'>Recomendado para ti</p>
-          <p class="rec-name" data-en='The 2-kit combo · 50% OFF'>Combo de los 2 kits · 50% OFF</p>
-          <p class="rec-why" data-en='Take the complete system — Mentory Express + Starter Kit — and master projects from start to finish. 11 tools, now at half the price.'>Llévate el sistema completo — Mentory Express + Kit de Arranque — y domina tus proyectos de inicio a fin. 11 herramientas, ahora a mitad de precio.</p>
-          <a href="/oferta" class="btn" data-en='See the offer (50% OFF) <span class="arrow">→</span>'>Ver la oferta (50% OFF) <span class="arrow">→</span></a>
-          <p class="rec-extra" data-en='Leading a team at a company? <a href="/#empresas">Explore consulting & training →</a>'>¿Lideras un equipo en una empresa? <a href="/#empresas">Conoce consultoría y capacitación →</a></p>
-        </div>
-      </div>
-
-      <p class="center diag-restart"><a class="backlink" id="diag-restart" data-en='↺ Retake the test'>↺ Repetir el test</a></p>
-    </div>
-
+    <div id="diag-app"></div>
   </div>
 </section>
 
@@ -217,7 +113,7 @@
     <a href="/" aria-label="Menttor — Gestión de proyectos" style="display:inline-block;margin-bottom:1rem;">
       <img src="../assets/menttor-logo-blanco.png" alt="Menttor — Gestión de proyectos" style="height:117px;width:auto;" />
     </a>
-    <p data-en='Professional consulting and preparation · Project management with method.'>Consultoría y preparación profesional · Gestión de proyectos con método.</p>
+    <p>Consultoría y preparación profesional · Gestión de proyectos con método.</p>
     <div style="display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem;">
       <a href="https://www.instagram.com/mmmenttor/" target="_blank" rel="noopener noreferrer" class="social-link">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
@@ -228,129 +124,243 @@
         mmmenttor@gmail.com
       </a>
     </div>
-    <p style="margin-top:1.5rem;"><a href="/#empresas" data-en='For companies →'>Para empresas →</a> &nbsp;·&nbsp; <a href="/#kits" data-en='View the kits →'>Ver los kits →</a></p>
-    <p class="small" data-en='© 2026 Menttor. All rights reserved.'>© 2026 Menttor. Todos los derechos reservados.</p>
+    <p class="small">© 2026 Menttor. Todos los derechos reservados.</p>
   </div>
 </footer>
 
-<script src="/i18n.js"></script>
 <script>
-  (function () {
-    var qs = Array.prototype.slice.call(document.querySelectorAll('#diag-quiz [data-q]'));
-    var bar = document.getElementById('diag-bar');
-    var errEl = document.getElementById('diag-err');
-    var submit = document.getElementById('diag-submit');
-    var quiz = document.getElementById('diag-quiz');
-    var results = document.getElementById('diag-results');
-    var hero = document.querySelector('.detail-hero');
-    var gate = document.getElementById('diag-gate');
-    var gateForm = document.getElementById('diag-form');
-    var gateBtn = document.getElementById('dg-submit');
-    var pendingKey = null;
-    var ML_FORM_ACTION = 'https://assets.mailerlite.com/jsonp/2465760/forms/191086495499552220/subscribe';
+(function () {
+  var DIMS = [
+    { key: 'inicio', name: 'Inicio y planificación', low: 'Falta claridad antes de ejecutar.', high: 'Existe estructura de inicio y gobierno.' },
+    { key: 'seguimiento', name: 'Seguimiento y control', low: 'El control es reactivo.', high: 'Se gestiona con datos, tendencia y pronóstico.' },
+    { key: 'riesgos', name: 'Riesgos y stakeholders', low: 'Riesgos y actores se atienden tarde.', high: 'Se anticipan impactos y se influye con método.' },
+    { key: 'liderazgo', name: 'Liderazgo y comunicación', low: 'La entrega depende del esfuerzo individual.', high: 'El equipo avanza con acuerdos y accountability.' },
+    { key: 'ia', name: 'IA aplicada al PM', low: 'Uso inicial o sin controles.', high: 'Uso integrado, seguro y validado.' }
+  ];
+  var Q = [
+    { d: 0, t: 'Antes de iniciar la ejecución, ¿qué tan claro queda el resultado que debe entregar el proyecto?', o: ['Comenzamos con una idea general', 'Acordamos el objetivo verbalmente', 'Documentamos objetivo y entregables', 'Definimos objetivo, indicadores, entregables y criterio de aceptación'] },
+    { d: 0, t: '¿Cómo defines el alcance inicial?', o: ['Se aclara mientras avanzamos', 'Registro una lista básica de tareas', 'Documento inclusiones y exclusiones', 'Documento alcance, exclusiones, supuestos y proceso de cambios'] },
+    { d: 0, t: '¿Cómo identificas a las personas que influyen en el proyecto?', o: ['Las conozco cuando aparecen', 'Hago una lista informal', 'Creo un registro de stakeholders', 'Analizo influencia, interés, expectativas y estrategia de involucramiento'] },
+    { d: 0, t: '¿Cómo construyes el plan del proyecto?', o: ['Empiezo por las tareas urgentes', 'Creo una lista con fechas aproximadas', 'Organizo entregables, hitos y responsables', 'Defino WBS, dependencias, recursos, línea base e hitos'] },
+    { d: 0, t: '¿Cómo estableces el gobierno del proyecto?', o: ['No lo defino formalmente', 'Acordamos reuniones según necesidad', 'Defino reuniones, responsables y escalamiento', 'Documento roles, foros, decisiones, cadencia y umbrales de escalamiento'] },
+    { d: 1, t: '¿Cómo sabes si el proyecto avanza según el plan?', o: ['Me guío por la percepción del equipo', 'Reviso tareas terminadas', 'Comparo avance real con plan e hitos', 'Analizo tendencia, variación, pronóstico y entregables aceptados'] },
+    { d: 1, t: '¿Con qué frecuencia actualizas el estado del proyecto?', o: ['Cuando me lo solicitan', 'Una vez al mes o de forma irregular', 'Semanalmente', 'Con cadencia definida y alertas según criticidad'] },
+    { d: 1, t: '¿Cómo gestionas acciones y compromisos?', o: ['Confío en que cada persona recuerde', 'Los anoto en mensajes o notas', 'Mantengo un registro con responsable y fecha', 'Reviso vencimientos, evidencia de cierre y escalamiento'] },
+    { d: 1, t: '¿Cómo reportas el estado a líderes o sponsors?', o: ['Con mensajes informales', 'Con una lista de actividades', 'Con un status que incluye avance, riesgos y próximos pasos', 'Con síntesis ejecutiva, indicadores, decisiones y pronóstico'] },
+    { d: 1, t: '¿Cómo manejas una desviación de fecha o costo?', o: ['La comunico cuando ya afecta el resultado', 'Busco recuperarla antes de informar', 'Analizo causa, impacto y plan de recuperación', 'Actualizo pronóstico, opciones, decisión requerida y control de cambios'] },
+    { d: 2, t: '¿Cuándo revisas los riesgos?', o: ['Cuando el problema ya ocurrió', 'Al inicio y cuando recuerdo', 'En una revisión periódica', 'De forma continua, ligada a hitos, cambios y decisiones'] },
+    { d: 2, t: '¿Cómo registras un riesgo?', o: ['No lo registro', 'Anoto una descripción general', 'Documento probabilidad, impacto, responsable y respuesta', 'Incluyo causa, evento, impacto, disparador, exposición y contingencia'] },
+    { d: 2, t: '¿Cómo decides qué riesgo requiere atención inmediata?', o: ['Por intuición', 'Por quien lo plantea con más urgencia', 'Uso probabilidad e impacto', 'Uso exposición, proximidad, apetito, tendencia y efecto acumulado'] },
+    { d: 2, t: '¿Cómo gestionas a un sponsor poco disponible?', o: ['Espero a que responda', 'Insisto por distintos medios', 'Acordamos una cadencia y decisiones pendientes', 'Presento opciones, impacto, fecha límite y vía de escalamiento'] },
+    { d: 2, t: '¿Cómo preparas una conversación con un stakeholder resistente?', o: ['La evito hasta que sea necesaria', 'Explico nuevamente el proyecto', 'Investigo intereses y adapto el mensaje', 'Diseño una estrategia con evidencia, escucha, acuerdos y seguimiento'] },
+    { d: 3, t: '¿Cómo asignas responsabilidades al equipo?', o: ['Doy instrucciones cuando surge el trabajo', 'Distribuyo tareas según disponibilidad', 'Aclaro responsable, resultado y fecha', 'Alineo responsabilidad, autoridad, dependencias y evidencia de cierre'] },
+    { d: 3, t: '¿Cómo conduces una reunión de proyecto?', o: ['Revisamos temas a medida que surgen', 'Llevo una lista de asuntos', 'Defino agenda, objetivo y acciones', 'Oriento la reunión a decisiones, preparo insumos y cierro con compromisos verificables'] },
+    { d: 3, t: '¿Cómo abordas un conflicto entre áreas?', o: ['Espero que lo resuelvan', 'Intervengo cuando afecta el cronograma', 'Facilito una conversación y acuerdos', 'Trabajo intereses, criterios de decisión, impacto y seguimiento del acuerdo'] },
+    { d: 3, t: '¿Cómo comunicas una mala noticia?', o: ['La pospongo hasta tener una solución completa', 'La suavizo para evitar tensión', 'Informo el hecho, impacto y acción', 'Comunico temprano, con evidencia, escenarios, recomendación y decisión requerida'] },
+    { d: 3, t: '¿Cómo desarrollas al equipo durante el proyecto?', o: ['Me concentro únicamente en la entrega', 'Doy retroalimentación cuando hay errores', 'Hago seguimiento y feedback periódico', 'Delego con intención, doy feedback y creo oportunidades de aprendizaje'] },
+    { d: 4, t: '¿Con qué frecuencia utilizas IA en tu trabajo como PM?', o: ['Nunca', 'La pruebo de forma ocasional', 'La uso semanalmente en tareas definidas', 'La integro en flujos recurrentes con controles de calidad'] },
+    { d: 4, t: '¿Para qué utilizas IA?', o: ['No la utilizo', 'Para redactar o resumir', 'Para preparar entregables y analizar información', 'Para varios flujos: planificación, riesgos, comunicación y revisión'] },
+    { d: 4, t: '¿Cómo proteges la información al usar IA?', o: ['Copio la información tal como está', 'Elimino algunos nombres', 'Anonimizo y uso herramientas autorizadas', 'Aplico política, minimización, anonimización, acceso y trazabilidad'] },
+    { d: 4, t: '¿Cómo validas una salida generada por IA?', o: ['La uso si se ve correcta', 'Hago una lectura rápida', 'Verifico hechos, cifras y formato', 'Valido fuente, supuestos, omisiones, seguridad y aplicabilidad'] },
+    { d: 4, t: '¿Cómo construyes tus instrucciones para IA?', o: ['Escribo una pregunta breve', 'Agrego algo de contexto', 'Defino rol, tarea, formato y contexto', 'Defino RTIC, datos, límites, criterios de calidad y tratamiento de faltantes'] }
+  ];
+  var LEVELS = [
+    { key: 'explorer', name: 'PM Explorer', min: 25, max: 43,
+      titular: 'Estás construyendo tu base como Project Manager.',
+      desc: 'Tu mayor oportunidad está en crear estructura antes de ejecutar y en sostener hábitos simples de control.',
+      fortalezas: ['Iniciativa', 'Aprendizaje', 'Disposición para asumir responsabilidad'],
+      plan7: 'Día 1: define objetivo y entregables. Día 3: asigna responsables. Día 5: crea registro de acciones. Día 7: prepara un status breve.',
+      product: 'PM Starter Kit', cta: 'Conoce el PM Starter Kit', url: '/#kits' },
+    { key: 'practitioner', name: 'PM Practitioner', min: 44, max: 62,
+      titular: 'Ya gestionas proyectos. El siguiente paso es ganar consistencia.',
+      desc: 'Tienes experiencia práctica; ahora necesitas un sistema que funcione incluso bajo presión.',
+      fortalezas: ['Respuesta operativa', 'Coordinación', 'Experiencia con equipos'],
+      plan7: 'Día 1: centraliza RAID. Día 3: revisa vencimientos. Día 5: prepara status con decisiones. Día 7: mide retrabajo.',
+      product: 'PM Starter Kit + PM AI Toolkit', cta: 'Explora Starter y PM AI', url: '/#kits' },
+    { key: 'professional', name: 'PM Professional', min: 63, max: 81,
+      titular: 'Tienes una gestión sólida. Es momento de elevar tu impacto ejecutivo.',
+      desc: 'Tu próximo nivel depende de la calidad del pronóstico, las decisiones y tu capacidad de influencia.',
+      fortalezas: ['Control', 'Comunicación', 'Criterio profesional'],
+      plan7: 'Día 1: audita tu status. Día 3: identifica decisiones. Día 5: revisa stakeholders. Día 7: prueba un flujo de IA seguro.',
+      product: 'Professional Toolkit', cta: 'Conoce Professional Toolkit', url: '/#kits' },
+    { key: 'strategic', name: 'PM Strategic Leader', min: 82, max: 100,
+      titular: 'Lideras con visión integral. Ahora puedes escalar tu método.',
+      desc: 'Tu oportunidad está en convertir experiencia individual en capacidad de equipo y gobierno.',
+      fortalezas: ['Pensamiento sistémico', 'Liderazgo', 'Gobierno'],
+      plan7: 'Día 1: elige una práctica crítica. Día 3: documenta el flujo. Día 5: transfiérelo. Día 7: revisa adopción y calidad.',
+      product: 'PMO Toolkit + Mentoría MM Menttor', cta: 'Explora PMO y mentoría', url: '/#empresas' }
+  ];
+  var ML_FORM_ACTION = 'https://assets.mailerlite.com/jsonp/2465760/forms/191086495499552220/subscribe';
 
-    function answered() { return qs.filter(function (q) { return q.querySelector('input:checked'); }).length; }
-    function updateBar() { bar.style.width = Math.round(answered() / qs.length * 100) + '%'; }
-    quiz.addEventListener('change', function (e) {
-      if (e.target && e.target.matches('input[type="radio"]')) {
-        updateBar();
-        var q = e.target.closest('[data-q]'); if (q) q.classList.remove('q-missing');
-        errEl.textContent = '';
-      }
+  var app = document.getElementById('diag-app');
+  var hero = document.getElementById('diag-hero');
+  var state = { step: 0, answers: {} }; // step 0..4 = dimensiones, 5 = contacto
+  var TOTAL_STEPS = DIMS.length; // 5 dimensiones
+
+  function answeredCount() { return Object.keys(state.answers).length; }
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+
+  function progressHTML() {
+    var pct = Math.round(answeredCount() / Q.length * 100);
+    return '<div class="diag-progress"><div class="diag-progress-bar"><i style="width:' + pct + '%"></i></div>' +
+      '<p class="diag-progress-txt">' + answeredCount() + ' de ' + Q.length + ' respondidas</p></div>';
+  }
+
+  function renderDimensionStep(di) {
+    var dim = DIMS[di];
+    var html = progressHTML();
+    html += '<div class="step-head"><p class="step-eyebrow">Dimensión ' + (di + 1) + ' de ' + TOTAL_STEPS + '</p><h2 class="step-title">' + esc(dim.name) + '</h2></div>';
+    Q.forEach(function (q, idx) {
+      if (q.d !== di) return;
+      html += '<div class="q" data-qi="' + idx + '"><p class="q-title">' + esc(q.t) + '</p>';
+      q.o.forEach(function (opt, oi) {
+        var checked = state.answers[idx] === (oi + 1) ? ' checked' : '';
+        html += '<label class="opt"><input type="radio" name="q' + idx + '" value="' + (oi + 1) + '"' + checked + '><span>' + esc(opt) + '</span></label>';
+      });
+      html += '</div>';
     });
+    html += '<p class="diag-err" id="diag-err"></p>';
+    html += '<div class="diag-nav">' +
+      (di > 0 ? '<button type="button" class="btn btn-ghost" id="diag-back">← Atrás</button>' : '<span></span>') +
+      '<button type="button" class="btn" id="diag-next">' + (di < TOTAL_STEPS - 1 ? 'Siguiente <span class="arrow">→</span>' : 'Continuar <span class="arrow">→</span>') + '</button>' +
+      '</div>';
+    app.innerHTML = html;
 
-    function showResult(key) {
-      quiz.style.display = 'none';
-      results.querySelectorAll('.result').forEach(function (r) { r.classList.remove('show'); });
-      var el = results.querySelector('[data-result="' + key + '"]');
-      if (el) el.classList.add('show');
-      results.style.display = 'block';
-      if (hero) hero.style.display = 'none';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    submit.addEventListener('click', function () {
-      var missing = qs.filter(function (q) { return !q.querySelector('input:checked'); });
+    app.querySelectorAll('input[type="radio"]').forEach(function (inp) {
+      inp.addEventListener('change', function () {
+        state.answers[parseInt(inp.name.slice(1), 10)] = parseInt(inp.value, 10);
+        var pb = app.querySelector('.diag-progress-bar > i'); if (pb) pb.style.width = Math.round(answeredCount() / Q.length * 100) + '%';
+        var pt = app.querySelector('.diag-progress-txt'); if (pt) pt.textContent = answeredCount() + ' de ' + Q.length + ' respondidas';
+        var qc = inp.closest('.q'); if (qc) qc.classList.remove('q-missing');
+      });
+    });
+    var back = document.getElementById('diag-back');
+    if (back) back.addEventListener('click', function () { state.step--; render(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+    document.getElementById('diag-next').addEventListener('click', function () {
+      var missing = [];
+      Q.forEach(function (q, idx) { if (q.d === di && !state.answers[idx]) missing.push(idx); });
       if (missing.length) {
-        missing.forEach(function (q) { q.classList.add('q-missing'); });
-        errEl.textContent = window.__t
-          ? window.__t('Responde las ' + qs.length + ' preguntas para ver tu resultado.', 'Answer all ' + qs.length + ' questions to see your result.')
-          : 'Responde todas las preguntas.';
-        missing[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+        missing.forEach(function (idx) { var el = app.querySelector('[data-qi="' + idx + '"]'); if (el) el.classList.add('q-missing'); });
+        document.getElementById('diag-err').textContent = 'Responde las ' + missing.length + ' preguntas que faltan en esta sección.';
+        app.querySelector('[data-qi="' + missing[0] + '"]').scrollIntoView({ behavior: 'smooth', block: 'center' });
         return;
       }
-      var score = 0;
-      qs.forEach(function (q) {
-        var sel = q.querySelector('input:checked');
-        score += parseInt(sel.getAttribute('data-points'), 10) || 0;
+      state.step++; render(); window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  function renderContactStep() {
+    var html = progressHTML();
+    html += '<div class="step-head center"><p class="step-eyebrow">Último paso</p><h2 class="step-title">¿A dónde te enviamos tu resultado?</h2></div>';
+    html += '<p class="contact-intro lead">Te mostramos tu nivel, tus prioridades y tu plan de 7 días — y te enviamos tu ruta personalizada por correo.</p>';
+    html += '<form class="form-card" id="diag-form" style="max-width:480px;margin:0 auto;">' +
+      '<div class="diag-field"><label for="dg-nombre">¿Cómo te llamas?</label><input id="dg-nombre" name="first_name" type="text" autocomplete="given-name" required></div>' +
+      '<div class="diag-field"><label for="dg-email">¿A qué correo enviamos tu resultado y ruta?</label><input id="dg-email" name="email_address" type="email" autocomplete="email" required></div>' +
+      '<div class="diag-field"><label for="dg-rol">Rol actual</label><select id="dg-rol" name="rol" required>' +
+        '<option value="" disabled selected>Selecciona…</option>' +
+        '<option>Aspirante</option><option>Coordinador</option><option>PM</option><option>PM Senior</option><option>PMO</option><option>Otro</option></select></div>' +
+      '<div class="diag-field"><label for="dg-exp">Años de experiencia <span style="font-weight:400;color:var(--fg-3);">(opcional)</span></label><select id="dg-exp" name="experiencia">' +
+        '<option value="" selected>Prefiero no decir</option><option>0</option><option>1-2</option><option>3-5</option><option>6-10</option><option>10+</option></select></div>' +
+      '<label class="diag-consent"><input type="checkbox" id="dg-consent" required><span>Acepto recibir mi resultado y contenidos relacionados. Puedo cancelar en cualquier momento.</span></label>' +
+      '<button type="submit" class="btn btn-lg" id="dg-submit" style="width:100%;margin-top:1rem;">Ver mi resultado <span class="arrow">→</span></button>' +
+      '<p class="diag-err" id="diag-err"></p>' +
+      '</form>';
+    html += '<div class="diag-nav" style="justify-content:center;"><button type="button" class="btn btn-ghost" id="diag-back">← Atrás</button></div>';
+    html += '<p class="diag-note">Herramienta educativa y comercial. No es una evaluación psicométrica ni certificación profesional validada.</p>';
+    app.innerHTML = html;
+
+    document.getElementById('diag-back').addEventListener('click', function () { state.step--; render(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+    document.getElementById('diag-form').addEventListener('submit', onSubmit);
+  }
+
+  function compute() {
+    var dimScores = DIMS.map(function () { return 0; });
+    var total = 0;
+    Q.forEach(function (q, idx) { var v = state.answers[idx] || 0; dimScores[q.d] += v; total += v; });
+    var level = LEVELS[0];
+    for (var i = 0; i < LEVELS.length; i++) { if (total >= LEVELS[i].min) level = LEVELS[i]; }
+    // 2 dimensiones más bajas (asc; empate -> dimensión más temprana)
+    var order = dimScores.map(function (s, i) { return { i: i, s: s }; });
+    order.sort(function (a, b) { return a.s - b.s || a.i - b.i; });
+    var priorities = [order[0].i, order[1].i];
+    return { total: total, dimScores: dimScores, level: level, priorities: priorities };
+  }
+
+  async function onSubmit(e) {
+    e.preventDefault();
+    var form = e.target;
+    var data = Object.fromEntries(new FormData(form));
+    var r = compute();
+    var btn = document.getElementById('dg-submit');
+    var original = btn.innerHTML;
+    btn.disabled = true; btn.textContent = 'Enviando…';
+    var prioNames = r.priorities.map(function (i) { return DIMS[i].name; }).join(' · ');
+    try {
+      var mlBody = new URLSearchParams({ 'fields[email]': data.email_address, 'fields[name]': data.first_name || '', 'ml-submit': '1', 'anticsrf': 'true' });
+      var mlReq = fetch(ML_FORM_ACTION, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: mlBody });
+      var backupReq = fetch('https://api.web3forms.com/submit', {
+        method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          access_key: '410784cf-1835-4fa6-8d28-55a7d510857c',
+          from_name: 'Menttor — Diagnóstico PM',
+          subject: 'Diagnóstico PM · ' + r.level.name + ' · ' + r.total + '/100',
+          nombre: data.first_name || '', email: data.email_address,
+          rol: data.rol || '', experiencia: data.experiencia || '',
+          nivel: r.level.name, puntaje: r.total + '/100', prioridades: prioNames
+        })
       });
-      // 7 preguntas · 1-3 pts · rango 7-21
-      var key = score <= 12 ? 'junior' : (score <= 17 ? 'intermedio' : 'avanzado');
-      // en vez de mostrar el resultado directo, pedimos el correo
-      pendingKey = key;
-      quiz.style.display = 'none';
-      if (hero) hero.style.display = 'none';
-      gate.style.display = 'block';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+      await Promise.allSettled([mlReq, backupReq]);
+    } catch (err) { /* no bloqueamos el resultado */ }
+    renderResult(r, data.first_name || '');
+  }
 
-    gateForm.addEventListener('submit', async function (e) {
-      e.preventDefault();
-      var data = Object.fromEntries(new FormData(gateForm));
-      var original = gateBtn.innerHTML;
-      gateBtn.disabled = true;
-      gateBtn.textContent = window.__t ? window.__t('Enviando…', 'Sending…') : 'Enviando…';
-      try {
-        // 1) Suscripción a MailerLite (misma lista que el kit gratis)
-        var mlBody = new URLSearchParams({
-          'fields[email]': data.email_address,
-          'fields[name]': data.first_name || '',
-          'ml-submit': '1',
-          'anticsrf': 'true'
-        });
-        var mlReq = fetch(ML_FORM_ACTION, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: mlBody });
-        // 2) Respaldo a mmmenttor@gmail.com vía Web3Forms (incluye el nivel)
-        var backupReq = fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify({
-            access_key: '410784cf-1835-4fa6-8d28-55a7d510857c',
-            from_name: 'Menttor — Diagnóstico PM',
-            subject: 'Nuevo registro · Diagnóstico PM (nivel: ' + pendingKey + ')',
-            nombre: data.first_name || '',
-            email: data.email_address,
-            nivel: pendingKey
-          })
-        });
-        await Promise.allSettled([mlReq, backupReq]);
-      } catch (err) { /* no bloqueamos el resultado si falla el envío */ }
-      gateBtn.disabled = false;
-      gateBtn.innerHTML = original;
-      gate.style.display = 'none';
-      showResult(pendingKey);
-    });
+  function renderResult(r, nombre) {
+    var lv = r.level;
+    var saludo = nombre ? esc(nombre) + ', ' : '';
+    var dimHTML = DIMS.map(function (dim, i) {
+      var sc = r.dimScores[i], pct = Math.round(sc / 20 * 100), low = sc <= 10;
+      return '<div class="dim-row"><div class="dim-top"><span>' + esc(dim.name) + '</span><b>' + sc + '/20</b></div>' +
+        '<div class="dim-bar' + (low ? ' low' : '') + '"><i style="width:' + pct + '%"></i></div></div>';
+    }).join('');
+    var prioHTML = r.priorities.map(function (i) {
+      return '<div style="margin-bottom:1rem;"><p class="prio-name">' + esc(DIMS[i].name) + '</p><p class="prio-desc">' + esc(DIMS[i].low) + '</p></div>';
+    }).join('');
+    var fortHTML = lv.fortalezas.map(function (f) { return '<li>' + esc(f) + '</li>'; }).join('');
 
+    hero.style.display = 'none';
+    app.innerHTML =
+      '<div class="result show center">' +
+        '<span class="level-badge">' + esc(lv.name) + '</span>' +
+        '<p class="score-big">' + r.total + '<small>/100</small></p>' +
+        '<h2 class="level-title">' + saludo + esc(lv.titular) + '</h2>' +
+        '<p class="level-desc">' + esc(lv.desc) + '</p>' +
+        '<div class="res-grid">' +
+          '<div class="res-card"><h3>Tu puntaje por dimensión</h3>' + dimHTML + '</div>' +
+          '<div class="res-card prio-card"><h3>Tus 2 prioridades</h3>' + prioHTML + '</div>' +
+        '</div>' +
+        '<div class="res-grid">' +
+          '<div class="res-card"><h3>Tus fortalezas</h3><ul class="res-list">' + fortHTML + '</ul></div>' +
+          '<div class="plan7" style="margin:0;"><h3>Tu plan de 7 días</h3><p>' + esc(lv.plan7) + '</p></div>' +
+        '</div>' +
+        '<div class="rec-card">' +
+          '<p class="rec-eyebrow">Tu ruta recomendada</p>' +
+          '<p class="rec-name">' + esc(lv.product) + '</p>' +
+          '<a href="' + lv.url + '" class="btn">' + esc(lv.cta) + ' <span class="arrow">→</span></a>' +
+        '</div>' +
+        '<p class="center diag-restart"><a class="backlink" id="diag-restart">↺ Repetir el diagnóstico</a></p>' +
+      '</div>';
     document.getElementById('diag-restart').addEventListener('click', function () {
-      quiz.querySelectorAll('input:checked').forEach(function (i) { i.checked = false; });
-      results.style.display = 'none';
-      results.querySelectorAll('.result').forEach(function (r) { r.classList.remove('show'); });
-      gate.style.display = 'none';
-      if (gateForm) gateForm.reset();
-      if (hero) hero.style.display = '';
-      quiz.style.display = 'block';
-      updateBar();
-      errEl.textContent = '';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      state = { step: 0, answers: {} }; hero.style.display = ''; render(); window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 
-    results.style.display = 'none';
-    updateBar();
-  })();
-
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold: .12 });
-  document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+  function render() {
+    if (state.step < TOTAL_STEPS) renderDimensionStep(state.step);
+    else renderContactStep();
+  }
+  render();
+})();
 </script>
 </body>
 </html>
