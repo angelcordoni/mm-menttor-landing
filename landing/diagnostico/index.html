@@ -29,7 +29,6 @@
   .opt:has(input:checked) { border-color: var(--gold-500); background: var(--cream); }
   .diag-nav { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-top: 1.6rem; flex-wrap: wrap; }
   .diag-err { color: #9a3412; font-size: .9rem; margin-top: 1rem; min-height: 1.1rem; text-align: center; }
-  /* contact */
   .contact-intro { text-align: center; max-width: 46ch; margin: 0 auto 1.6rem; }
   .diag-field { margin-bottom: 1.1rem; }
   .diag-field label { display: block; font-family: var(--font-sans); font-weight: 700; font-size: .85rem; color: var(--navy-700); margin-bottom: .4rem; }
@@ -38,7 +37,6 @@
   .diag-consent { display: flex; gap: .6rem; align-items: flex-start; font-family: var(--font-body); font-size: .9rem; color: var(--fg-2); margin: 1rem 0 .4rem; }
   .diag-consent input { width: 18px; height: 18px; margin-top: 2px; flex-shrink: 0; accent-color: var(--navy-700); }
   .diag-note { font-size: .78rem; color: var(--fg-3); text-align: center; margin-top: 1.2rem; }
-  /* result */
   .result { display: none; }
   .result.show { display: block; animation: rfade .45s ease; }
   @keyframes rfade { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
@@ -80,14 +78,18 @@
   <div class="wrap">
     <a href="/" class="brand-lockup" aria-label="Menttor — Gestión de proyectos">
       <span class="logo-iso"><b>MM</b></span>
-      <span class="logo-word"><span class="n">Menttor</span><span class="m">GESTIÓN DE PROYECTOS</span></span>
+      <span class="logo-word"><span class="n">Menttor</span><span class="m" data-en='PROJECT MANAGEMENT'>GESTIÓN DE PROYECTOS</span></span>
     </a>
     <div class="topbar-actions">
+      <div class="lang-switch" role="group" aria-label="Language / Idioma">
+        <button type="button" data-lang-btn="es">ES</button>
+        <button type="button" data-lang-btn="en">EN</button>
+      </div>
       <a href="https://www.instagram.com/mmmenttor/" target="_blank" rel="noopener noreferrer" class="ig-top">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
         <span class="ig-label">@mmmenttor</span>
       </a>
-      <a href="/#kits" class="backlink">← Volver a los kits</a>
+      <a href="/#kits" class="backlink" data-en='← Back to the kits'>← Volver a los kits</a>
     </div>
   </div>
 </header>
@@ -95,9 +97,9 @@
 <section class="detail-hero" id="diag-hero">
   <div class="wrap">
     <div class="center">
-      <span class="eyebrow">Diagnóstico PM</span>
-      <h1>¿Qué tan preparado estás para liderar tu próximo proyecto?</h1>
-      <p class="sub" style="margin-left:auto;margin-right:auto;">25 preguntas · 5 dimensiones · 5 a 7 minutos. Descubre tu nivel como Project Manager y tu ruta de desarrollo.</p>
+      <span class="eyebrow" data-en='PM Diagnostic'>Diagnóstico PM</span>
+      <h1 data-en='How ready are you to lead your next project?'>¿Qué tan preparado estás para liderar tu próximo proyecto?</h1>
+      <p class="sub" style="margin-left:auto;margin-right:auto;" data-en='25 questions · 5 dimensions · 5 to 7 minutes. Discover your level as a Project Manager and your development path.'>25 preguntas · 5 dimensiones · 5 a 7 minutos. Descubre tu nivel como Project Manager y tu ruta de desarrollo.</p>
     </div>
   </div>
 </section>
@@ -113,7 +115,7 @@
     <a href="/" aria-label="Menttor — Gestión de proyectos" style="display:inline-block;margin-bottom:1rem;">
       <img src="../assets/menttor-logo-blanco.png" alt="Menttor — Gestión de proyectos" style="height:117px;width:auto;" />
     </a>
-    <p>Consultoría y preparación profesional · Gestión de proyectos con método.</p>
+    <p data-en='Professional consulting and preparation · Project management with method.'>Consultoría y preparación profesional · Gestión de proyectos con método.</p>
     <div style="display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem;">
       <a href="https://www.instagram.com/mmmenttor/" target="_blank" rel="noopener noreferrer" class="social-link">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
@@ -124,78 +126,138 @@
         mmmenttor@gmail.com
       </a>
     </div>
-    <p class="small">© 2026 Menttor. Todos los derechos reservados.</p>
+    <p class="small" data-en='© 2026 Menttor. All rights reserved.'>© 2026 Menttor. Todos los derechos reservados.</p>
   </div>
 </footer>
 
+<script src="/i18n.js"></script>
 <script>
 (function () {
-  var DIMS = [
-    { key: 'inicio', name: 'Inicio y planificación', low: 'Falta claridad antes de ejecutar.', high: 'Existe estructura de inicio y gobierno.' },
-    { key: 'seguimiento', name: 'Seguimiento y control', low: 'El control es reactivo.', high: 'Se gestiona con datos, tendencia y pronóstico.' },
-    { key: 'riesgos', name: 'Riesgos y stakeholders', low: 'Riesgos y actores se atienden tarde.', high: 'Se anticipan impactos y se influye con método.' },
-    { key: 'liderazgo', name: 'Liderazgo y comunicación', low: 'La entrega depende del esfuerzo individual.', high: 'El equipo avanza con acuerdos y accountability.' },
-    { key: 'ia', name: 'IA aplicada al PM', low: 'Uso inicial o sin controles.', high: 'Uso integrado, seguro y validado.' }
-  ];
-  var Q = [
-    { d: 0, t: 'Antes de iniciar la ejecución, ¿qué tan claro queda el resultado que debe entregar el proyecto?', o: ['Comenzamos con una idea general', 'Acordamos el objetivo verbalmente', 'Documentamos objetivo y entregables', 'Definimos objetivo, indicadores, entregables y criterio de aceptación'] },
-    { d: 0, t: '¿Cómo defines el alcance inicial?', o: ['Se aclara mientras avanzamos', 'Registro una lista básica de tareas', 'Documento inclusiones y exclusiones', 'Documento alcance, exclusiones, supuestos y proceso de cambios'] },
-    { d: 0, t: '¿Cómo identificas a las personas que influyen en el proyecto?', o: ['Las conozco cuando aparecen', 'Hago una lista informal', 'Creo un registro de stakeholders', 'Analizo influencia, interés, expectativas y estrategia de involucramiento'] },
-    { d: 0, t: '¿Cómo construyes el plan del proyecto?', o: ['Empiezo por las tareas urgentes', 'Creo una lista con fechas aproximadas', 'Organizo entregables, hitos y responsables', 'Defino WBS, dependencias, recursos, línea base e hitos'] },
-    { d: 0, t: '¿Cómo estableces el gobierno del proyecto?', o: ['No lo defino formalmente', 'Acordamos reuniones según necesidad', 'Defino reuniones, responsables y escalamiento', 'Documento roles, foros, decisiones, cadencia y umbrales de escalamiento'] },
-    { d: 1, t: '¿Cómo sabes si el proyecto avanza según el plan?', o: ['Me guío por la percepción del equipo', 'Reviso tareas terminadas', 'Comparo avance real con plan e hitos', 'Analizo tendencia, variación, pronóstico y entregables aceptados'] },
-    { d: 1, t: '¿Con qué frecuencia actualizas el estado del proyecto?', o: ['Cuando me lo solicitan', 'Una vez al mes o de forma irregular', 'Semanalmente', 'Con cadencia definida y alertas según criticidad'] },
-    { d: 1, t: '¿Cómo gestionas acciones y compromisos?', o: ['Confío en que cada persona recuerde', 'Los anoto en mensajes o notas', 'Mantengo un registro con responsable y fecha', 'Reviso vencimientos, evidencia de cierre y escalamiento'] },
-    { d: 1, t: '¿Cómo reportas el estado a líderes o sponsors?', o: ['Con mensajes informales', 'Con una lista de actividades', 'Con un status que incluye avance, riesgos y próximos pasos', 'Con síntesis ejecutiva, indicadores, decisiones y pronóstico'] },
-    { d: 1, t: '¿Cómo manejas una desviación de fecha o costo?', o: ['La comunico cuando ya afecta el resultado', 'Busco recuperarla antes de informar', 'Analizo causa, impacto y plan de recuperación', 'Actualizo pronóstico, opciones, decisión requerida y control de cambios'] },
-    { d: 2, t: '¿Cuándo revisas los riesgos?', o: ['Cuando el problema ya ocurrió', 'Al inicio y cuando recuerdo', 'En una revisión periódica', 'De forma continua, ligada a hitos, cambios y decisiones'] },
-    { d: 2, t: '¿Cómo registras un riesgo?', o: ['No lo registro', 'Anoto una descripción general', 'Documento probabilidad, impacto, responsable y respuesta', 'Incluyo causa, evento, impacto, disparador, exposición y contingencia'] },
-    { d: 2, t: '¿Cómo decides qué riesgo requiere atención inmediata?', o: ['Por intuición', 'Por quien lo plantea con más urgencia', 'Uso probabilidad e impacto', 'Uso exposición, proximidad, apetito, tendencia y efecto acumulado'] },
-    { d: 2, t: '¿Cómo gestionas a un sponsor poco disponible?', o: ['Espero a que responda', 'Insisto por distintos medios', 'Acordamos una cadencia y decisiones pendientes', 'Presento opciones, impacto, fecha límite y vía de escalamiento'] },
-    { d: 2, t: '¿Cómo preparas una conversación con un stakeholder resistente?', o: ['La evito hasta que sea necesaria', 'Explico nuevamente el proyecto', 'Investigo intereses y adapto el mensaje', 'Diseño una estrategia con evidencia, escucha, acuerdos y seguimiento'] },
-    { d: 3, t: '¿Cómo asignas responsabilidades al equipo?', o: ['Doy instrucciones cuando surge el trabajo', 'Distribuyo tareas según disponibilidad', 'Aclaro responsable, resultado y fecha', 'Alineo responsabilidad, autoridad, dependencias y evidencia de cierre'] },
-    { d: 3, t: '¿Cómo conduces una reunión de proyecto?', o: ['Revisamos temas a medida que surgen', 'Llevo una lista de asuntos', 'Defino agenda, objetivo y acciones', 'Oriento la reunión a decisiones, preparo insumos y cierro con compromisos verificables'] },
-    { d: 3, t: '¿Cómo abordas un conflicto entre áreas?', o: ['Espero que lo resuelvan', 'Intervengo cuando afecta el cronograma', 'Facilito una conversación y acuerdos', 'Trabajo intereses, criterios de decisión, impacto y seguimiento del acuerdo'] },
-    { d: 3, t: '¿Cómo comunicas una mala noticia?', o: ['La pospongo hasta tener una solución completa', 'La suavizo para evitar tensión', 'Informo el hecho, impacto y acción', 'Comunico temprano, con evidencia, escenarios, recomendación y decisión requerida'] },
-    { d: 3, t: '¿Cómo desarrollas al equipo durante el proyecto?', o: ['Me concentro únicamente en la entrega', 'Doy retroalimentación cuando hay errores', 'Hago seguimiento y feedback periódico', 'Delego con intención, doy feedback y creo oportunidades de aprendizaje'] },
-    { d: 4, t: '¿Con qué frecuencia utilizas IA en tu trabajo como PM?', o: ['Nunca', 'La pruebo de forma ocasional', 'La uso semanalmente en tareas definidas', 'La integro en flujos recurrentes con controles de calidad'] },
-    { d: 4, t: '¿Para qué utilizas IA?', o: ['No la utilizo', 'Para redactar o resumir', 'Para preparar entregables y analizar información', 'Para varios flujos: planificación, riesgos, comunicación y revisión'] },
-    { d: 4, t: '¿Cómo proteges la información al usar IA?', o: ['Copio la información tal como está', 'Elimino algunos nombres', 'Anonimizo y uso herramientas autorizadas', 'Aplico política, minimización, anonimización, acceso y trazabilidad'] },
-    { d: 4, t: '¿Cómo validas una salida generada por IA?', o: ['La uso si se ve correcta', 'Hago una lectura rápida', 'Verifico hechos, cifras y formato', 'Valido fuente, supuestos, omisiones, seguridad y aplicabilidad'] },
-    { d: 4, t: '¿Cómo construyes tus instrucciones para IA?', o: ['Escribo una pregunta breve', 'Agrego algo de contexto', 'Defino rol, tarea, formato y contexto', 'Defino RTIC, datos, límites, criterios de calidad y tratamiento de faltantes'] }
-  ];
-  var LEVELS = [
-    { key: 'explorer', name: 'PM Explorer', min: 25, max: 43,
-      titular: 'Estás construyendo tu base como Project Manager.',
-      desc: 'Tu mayor oportunidad está en crear estructura antes de ejecutar y en sostener hábitos simples de control.',
-      fortalezas: ['Iniciativa', 'Aprendizaje', 'Disposición para asumir responsabilidad'],
-      plan7: 'Día 1: define objetivo y entregables. Día 3: asigna responsables. Día 5: crea registro de acciones. Día 7: prepara un status breve.',
-      product: 'PM Starter Kit', cta: 'Conoce el PM Starter Kit', url: '/#kits' },
-    { key: 'practitioner', name: 'PM Practitioner', min: 44, max: 62,
-      titular: 'Ya gestionas proyectos. El siguiente paso es ganar consistencia.',
-      desc: 'Tienes experiencia práctica; ahora necesitas un sistema que funcione incluso bajo presión.',
-      fortalezas: ['Respuesta operativa', 'Coordinación', 'Experiencia con equipos'],
-      plan7: 'Día 1: centraliza RAID. Día 3: revisa vencimientos. Día 5: prepara status con decisiones. Día 7: mide retrabajo.',
-      product: 'PM Starter Kit + PM AI Toolkit', cta: 'Explora Starter y PM AI', url: '/#kits' },
-    { key: 'professional', name: 'PM Professional', min: 63, max: 81,
-      titular: 'Tienes una gestión sólida. Es momento de elevar tu impacto ejecutivo.',
-      desc: 'Tu próximo nivel depende de la calidad del pronóstico, las decisiones y tu capacidad de influencia.',
-      fortalezas: ['Control', 'Comunicación', 'Criterio profesional'],
-      plan7: 'Día 1: audita tu status. Día 3: identifica decisiones. Día 5: revisa stakeholders. Día 7: prueba un flujo de IA seguro.',
-      product: 'Professional Toolkit', cta: 'Conoce Professional Toolkit', url: '/#kits' },
-    { key: 'strategic', name: 'PM Strategic Leader', min: 82, max: 100,
-      titular: 'Lideras con visión integral. Ahora puedes escalar tu método.',
-      desc: 'Tu oportunidad está en convertir experiencia individual en capacidad de equipo y gobierno.',
-      fortalezas: ['Pensamiento sistémico', 'Liderazgo', 'Gobierno'],
-      plan7: 'Día 1: elige una práctica crítica. Día 3: documenta el flujo. Día 5: transfiérelo. Día 7: revisa adopción y calidad.',
-      product: 'PMO Toolkit + Mentoría MM Menttor', cta: 'Explora PMO y mentoría', url: '/#empresas' }
-  ];
-  var ML_FORM_ACTION = 'https://assets.mailerlite.com/jsonp/2465760/forms/191086495499552220/subscribe';
+  function L(es, en) { return (window.__t) ? window.__t(es, en) : es; }
 
+  var DIMS = [
+    { name: 'Inicio y planificación', nameEn: 'Planning & initiation', low: 'Falta claridad antes de ejecutar.', lowEn: 'There is a lack of clarity before executing.' },
+    { name: 'Seguimiento y control', nameEn: 'Monitoring & control', low: 'El control es reactivo.', lowEn: 'Control is reactive.' },
+    { name: 'Riesgos y stakeholders', nameEn: 'Risks & stakeholders', low: 'Riesgos y actores se atienden tarde.', lowEn: 'Risks and stakeholders are addressed too late.' },
+    { name: 'Liderazgo y comunicación', nameEn: 'Leadership & communication', low: 'La entrega depende del esfuerzo individual.', lowEn: 'Delivery depends on individual effort.' },
+    { name: 'IA aplicada al PM', nameEn: 'AI applied to PM', low: 'Uso inicial o sin controles.', lowEn: 'Early-stage use or without controls.' }
+  ];
+
+  var Q = [
+    { d:0, t:'Antes de iniciar la ejecución, ¿qué tan claro queda el resultado que debe entregar el proyecto?', tEn:'Before starting execution, how clear is the outcome the project must deliver?',
+      o:['Comenzamos con una idea general','Acordamos el objetivo verbalmente','Documentamos objetivo y entregables','Definimos objetivo, indicadores, entregables y criterio de aceptación'],
+      oEn:['We start with a general idea','We agree on the objective verbally','We document the objective and deliverables','We define objective, metrics, deliverables and acceptance criteria'] },
+    { d:0, t:'¿Cómo defines el alcance inicial?', tEn:'How do you define the initial scope?',
+      o:['Se aclara mientras avanzamos','Registro una lista básica de tareas','Documento inclusiones y exclusiones','Documento alcance, exclusiones, supuestos y proceso de cambios'],
+      oEn:['It becomes clear as we go','I record a basic task list','I document inclusions and exclusions','I document scope, exclusions, assumptions and a change process'] },
+    { d:0, t:'¿Cómo identificas a las personas que influyen en el proyecto?', tEn:'How do you identify the people who influence the project?',
+      o:['Las conozco cuando aparecen','Hago una lista informal','Creo un registro de stakeholders','Analizo influencia, interés, expectativas y estrategia de involucramiento'],
+      oEn:['I meet them as they show up','I make an informal list','I create a stakeholder register','I analyze influence, interest, expectations and an engagement strategy'] },
+    { d:0, t:'¿Cómo construyes el plan del proyecto?', tEn:'How do you build the project plan?',
+      o:['Empiezo por las tareas urgentes','Creo una lista con fechas aproximadas','Organizo entregables, hitos y responsables','Defino WBS, dependencias, recursos, línea base e hitos'],
+      oEn:['I start with the urgent tasks','I make a list with approximate dates','I organize deliverables, milestones and owners','I define WBS, dependencies, resources, baseline and milestones'] },
+    { d:0, t:'¿Cómo estableces el gobierno del proyecto?', tEn:'How do you establish project governance?',
+      o:['No lo defino formalmente','Acordamos reuniones según necesidad','Defino reuniones, responsables y escalamiento','Documento roles, foros, decisiones, cadencia y umbrales de escalamiento'],
+      oEn:['I do not define it formally','We agree on meetings as needed','I define meetings, owners and escalation','I document roles, forums, decisions, cadence and escalation thresholds'] },
+    { d:1, t:'¿Cómo sabes si el proyecto avanza según el plan?', tEn:'How do you know if the project is progressing according to plan?',
+      o:['Me guío por la percepción del equipo','Reviso tareas terminadas','Comparo avance real con plan e hitos','Analizo tendencia, variación, pronóstico y entregables aceptados'],
+      oEn:['I rely on the team’s perception','I review completed tasks','I compare actual progress against the plan and milestones','I analyze trend, variance, forecast and accepted deliverables'] },
+    { d:1, t:'¿Con qué frecuencia actualizas el estado del proyecto?', tEn:'How often do you update the project status?',
+      o:['Cuando me lo solicitan','Una vez al mes o de forma irregular','Semanalmente','Con cadencia definida y alertas según criticidad'],
+      oEn:['When I am asked to','Once a month or irregularly','Weekly','On a set cadence, with alerts based on criticality'] },
+    { d:1, t:'¿Cómo gestionas acciones y compromisos?', tEn:'How do you manage actions and commitments?',
+      o:['Confío en que cada persona recuerde','Los anoto en mensajes o notas','Mantengo un registro con responsable y fecha','Reviso vencimientos, evidencia de cierre y escalamiento'],
+      oEn:['I trust each person to remember','I jot them in messages or notes','I keep a log with owner and due date','I review due dates, closure evidence and escalation'] },
+    { d:1, t:'¿Cómo reportas el estado a líderes o sponsors?', tEn:'How do you report status to leaders or sponsors?',
+      o:['Con mensajes informales','Con una lista de actividades','Con un status que incluye avance, riesgos y próximos pasos','Con síntesis ejecutiva, indicadores, decisiones y pronóstico'],
+      oEn:['With informal messages','With a list of activities','With a status covering progress, risks and next steps','With an executive summary, metrics, decisions and forecast'] },
+    { d:1, t:'¿Cómo manejas una desviación de fecha o costo?', tEn:'How do you handle a schedule or cost deviation?',
+      o:['La comunico cuando ya afecta el resultado','Busco recuperarla antes de informar','Analizo causa, impacto y plan de recuperación','Actualizo pronóstico, opciones, decisión requerida y control de cambios'],
+      oEn:['I raise it once it already affects the outcome','I try to recover it before reporting','I analyze cause, impact and a recovery plan','I update forecast, options, the required decision and change control'] },
+    { d:2, t:'¿Cuándo revisas los riesgos?', tEn:'When do you review risks?',
+      o:['Cuando el problema ya ocurrió','Al inicio y cuando recuerdo','En una revisión periódica','De forma continua, ligada a hitos, cambios y decisiones'],
+      oEn:['Once the problem has already happened','At the start and when I remember','In a periodic review','Continuously, tied to milestones, changes and decisions'] },
+    { d:2, t:'¿Cómo registras un riesgo?', tEn:'How do you log a risk?',
+      o:['No lo registro','Anoto una descripción general','Documento probabilidad, impacto, responsable y respuesta','Incluyo causa, evento, impacto, disparador, exposición y contingencia'],
+      oEn:['I do not log it','I note a general description','I document probability, impact, owner and response','I include cause, event, impact, trigger, exposure and contingency'] },
+    { d:2, t:'¿Cómo decides qué riesgo requiere atención inmediata?', tEn:'How do you decide which risk needs immediate attention?',
+      o:['Por intuición','Por quien lo plantea con más urgencia','Uso probabilidad e impacto','Uso exposición, proximidad, apetito, tendencia y efecto acumulado'],
+      oEn:['By intuition','By whoever raises it most urgently','I use probability and impact','I use exposure, proximity, appetite, trend and cumulative effect'] },
+    { d:2, t:'¿Cómo gestionas a un sponsor poco disponible?', tEn:'How do you manage a low-availability sponsor?',
+      o:['Espero a que responda','Insisto por distintos medios','Acordamos una cadencia y decisiones pendientes','Presento opciones, impacto, fecha límite y vía de escalamiento'],
+      oEn:['I wait for them to respond','I follow up through different channels','We agree on a cadence and pending decisions','I present options, impact, a deadline and an escalation path'] },
+    { d:2, t:'¿Cómo preparas una conversación con un stakeholder resistente?', tEn:'How do you prepare a conversation with a resistant stakeholder?',
+      o:['La evito hasta que sea necesaria','Explico nuevamente el proyecto','Investigo intereses y adapto el mensaje','Diseño una estrategia con evidencia, escucha, acuerdos y seguimiento'],
+      oEn:['I avoid it until it is unavoidable','I explain the project again','I research their interests and adapt the message','I design a strategy with evidence, listening, agreements and follow-up'] },
+    { d:3, t:'¿Cómo asignas responsabilidades al equipo?', tEn:'How do you assign responsibilities to the team?',
+      o:['Doy instrucciones cuando surge el trabajo','Distribuyo tareas según disponibilidad','Aclaro responsable, resultado y fecha','Alineo responsabilidad, autoridad, dependencias y evidencia de cierre'],
+      oEn:['I give instructions as work comes up','I distribute tasks by availability','I clarify owner, outcome and due date','I align responsibility, authority, dependencies and closure evidence'] },
+    { d:3, t:'¿Cómo conduces una reunión de proyecto?', tEn:'How do you run a project meeting?',
+      o:['Revisamos temas a medida que surgen','Llevo una lista de asuntos','Defino agenda, objetivo y acciones','Oriento la reunión a decisiones, preparo insumos y cierro con compromisos verificables'],
+      oEn:['We review topics as they come up','I bring a list of topics','I define agenda, objective and actions','I steer the meeting toward decisions, prepare inputs and close with verifiable commitments'] },
+    { d:3, t:'¿Cómo abordas un conflicto entre áreas?', tEn:'How do you address a conflict between teams?',
+      o:['Espero que lo resuelvan','Intervengo cuando afecta el cronograma','Facilito una conversación y acuerdos','Trabajo intereses, criterios de decisión, impacto y seguimiento del acuerdo'],
+      oEn:['I wait for them to resolve it','I step in when it affects the schedule','I facilitate a conversation and agreements','I work on interests, decision criteria, impact and follow-up on the agreement'] },
+    { d:3, t:'¿Cómo comunicas una mala noticia?', tEn:'How do you communicate bad news?',
+      o:['La pospongo hasta tener una solución completa','La suavizo para evitar tensión','Informo el hecho, impacto y acción','Comunico temprano, con evidencia, escenarios, recomendación y decisión requerida'],
+      oEn:['I postpone it until I have a full solution','I soften it to avoid tension','I report the fact, impact and action','I communicate early, with evidence, scenarios, a recommendation and the required decision'] },
+    { d:3, t:'¿Cómo desarrollas al equipo durante el proyecto?', tEn:'How do you develop the team during the project?',
+      o:['Me concentro únicamente en la entrega','Doy retroalimentación cuando hay errores','Hago seguimiento y feedback periódico','Delego con intención, doy feedback y creo oportunidades de aprendizaje'],
+      oEn:['I focus only on delivery','I give feedback when there are mistakes','I provide regular follow-up and feedback','I delegate intentionally, give feedback and create learning opportunities'] },
+    { d:4, t:'¿Con qué frecuencia utilizas IA en tu trabajo como PM?', tEn:'How often do you use AI in your work as a PM?',
+      o:['Nunca','La pruebo de forma ocasional','La uso semanalmente en tareas definidas','La integro en flujos recurrentes con controles de calidad'],
+      oEn:['Never','I try it occasionally','I use it weekly on defined tasks','I integrate it into recurring workflows with quality controls'] },
+    { d:4, t:'¿Para qué utilizas IA?', tEn:'What do you use AI for?',
+      o:['No la utilizo','Para redactar o resumir','Para preparar entregables y analizar información','Para varios flujos: planificación, riesgos, comunicación y revisión'],
+      oEn:['I do not use it','To draft or summarize','To prepare deliverables and analyze information','For several workflows: planning, risks, communication and review'] },
+    { d:4, t:'¿Cómo proteges la información al usar IA?', tEn:'How do you protect information when using AI?',
+      o:['Copio la información tal como está','Elimino algunos nombres','Anonimizo y uso herramientas autorizadas','Aplico política, minimización, anonimización, acceso y trazabilidad'],
+      oEn:['I paste the information as-is','I remove some names','I anonymize and use authorized tools','I apply policy, data minimization, anonymization, access control and traceability'] },
+    { d:4, t:'¿Cómo validas una salida generada por IA?', tEn:'How do you validate an AI-generated output?',
+      o:['La uso si se ve correcta','Hago una lectura rápida','Verifico hechos, cifras y formato','Valido fuente, supuestos, omisiones, seguridad y aplicabilidad'],
+      oEn:['I use it if it looks right','I give it a quick read','I check facts, figures and format','I validate source, assumptions, omissions, security and applicability'] },
+    { d:4, t:'¿Cómo construyes tus instrucciones para IA?', tEn:'How do you build your prompts for AI?',
+      o:['Escribo una pregunta breve','Agrego algo de contexto','Defino rol, tarea, formato y contexto','Defino RTIC, datos, límites, criterios de calidad y tratamiento de faltantes'],
+      oEn:['I write a short question','I add some context','I define role, task, format and context','I define role-task-format-context, data, constraints, quality criteria and handling of missing info'] }
+  ];
+
+  var LEVELS = [
+    { name:'PM Explorer', min:25, max:43,
+      titular:'Estás construyendo tu base como Project Manager.', titularEn:'You are building your foundation as a Project Manager.',
+      desc:'Tu mayor oportunidad está en crear estructura antes de ejecutar y en sostener hábitos simples de control.', descEn:'Your biggest opportunity is creating structure before executing and sustaining simple control habits.',
+      fortalezas:['Iniciativa','Aprendizaje','Disposición para asumir responsabilidad'], fortalezasEn:['Initiative','Learning','Willingness to take ownership'],
+      plan7:'Día 1: define objetivo y entregables. Día 3: asigna responsables. Día 5: crea registro de acciones. Día 7: prepara un status breve.',
+      plan7En:'Day 1: define objective and deliverables. Day 3: assign owners. Day 5: create an action log. Day 7: prepare a brief status.',
+      product:'PM Starter Kit', productEn:'PM Starter Kit', cta:'Conoce el PM Starter Kit', ctaEn:'Discover the PM Starter Kit', url:'/#kits' },
+    { name:'PM Practitioner', min:44, max:62,
+      titular:'Ya gestionas proyectos. El siguiente paso es ganar consistencia.', titularEn:'You already manage projects. The next step is gaining consistency.',
+      desc:'Tienes experiencia práctica; ahora necesitas un sistema que funcione incluso bajo presión.', descEn:'You have hands-on experience; now you need a system that works even under pressure.',
+      fortalezas:['Respuesta operativa','Coordinación','Experiencia con equipos'], fortalezasEn:['Operational response','Coordination','Experience with teams'],
+      plan7:'Día 1: centraliza RAID. Día 3: revisa vencimientos. Día 5: prepara status con decisiones. Día 7: mide retrabajo.',
+      plan7En:'Day 1: centralize your RAID. Day 3: review due dates. Day 5: prepare a status with decisions. Day 7: measure rework.',
+      product:'PM Starter Kit + PM AI Toolkit', productEn:'PM Starter Kit + PM AI Toolkit', cta:'Explora Starter y PM AI', ctaEn:'Explore Starter and PM AI', url:'/#kits' },
+    { name:'PM Professional', min:63, max:81,
+      titular:'Tienes una gestión sólida. Es momento de elevar tu impacto ejecutivo.', titularEn:'You have solid management. It is time to raise your executive impact.',
+      desc:'Tu próximo nivel depende de la calidad del pronóstico, las decisiones y tu capacidad de influencia.', descEn:'Your next level depends on the quality of your forecasting, your decisions and your influence.',
+      fortalezas:['Control','Comunicación','Criterio profesional'], fortalezasEn:['Control','Communication','Professional judgment'],
+      plan7:'Día 1: audita tu status. Día 3: identifica decisiones. Día 5: revisa stakeholders. Día 7: prueba un flujo de IA seguro.',
+      plan7En:'Day 1: audit your status report. Day 3: identify decisions. Day 5: review stakeholders. Day 7: try a safe AI workflow.',
+      product:'Professional Toolkit', productEn:'Professional Toolkit', cta:'Conoce Professional Toolkit', ctaEn:'Discover the Professional Toolkit', url:'/#kits' },
+    { name:'PM Strategic Leader', min:82, max:100,
+      titular:'Lideras con visión integral. Ahora puedes escalar tu método.', titularEn:'You lead with an integrated vision. Now you can scale your method.',
+      desc:'Tu oportunidad está en convertir experiencia individual en capacidad de equipo y gobierno.', descEn:'Your opportunity is turning individual experience into team capability and governance.',
+      fortalezas:['Pensamiento sistémico','Liderazgo','Gobierno'], fortalezasEn:['Systems thinking','Leadership','Governance'],
+      plan7:'Día 1: elige una práctica crítica. Día 3: documenta el flujo. Día 5: transfiérelo. Día 7: revisa adopción y calidad.',
+      plan7En:'Day 1: pick a critical practice. Day 3: document the flow. Day 5: transfer it. Day 7: review adoption and quality.',
+      product:'PMO Toolkit + Mentoría MM Menttor', productEn:'PMO Toolkit + MM Menttor Mentorship', cta:'Explora PMO y mentoría', ctaEn:'Explore PMO and mentorship', url:'/#empresas' }
+  ];
+
+  var ML_FORM_ACTION = 'https://assets.mailerlite.com/jsonp/2465760/forms/191086495499552220/subscribe';
   var app = document.getElementById('diag-app');
   var hero = document.getElementById('diag-hero');
-  var state = { step: 0, answers: {} }; // step 0..4 = dimensiones, 5 = contacto
-  var TOTAL_STEPS = DIMS.length; // 5 dimensiones
+  var state = { step: 0, answers: {} };
+  var TOTAL_STEPS = DIMS.length;
+  var lastResult = null, lastNombre = '';
 
   function answeredCount() { return Object.keys(state.answers).length; }
   function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
@@ -203,17 +265,18 @@
   function progressHTML() {
     var pct = Math.round(answeredCount() / Q.length * 100);
     return '<div class="diag-progress"><div class="diag-progress-bar"><i style="width:' + pct + '%"></i></div>' +
-      '<p class="diag-progress-txt">' + answeredCount() + ' de ' + Q.length + ' respondidas</p></div>';
+      '<p class="diag-progress-txt">' + L(answeredCount() + ' de ' + Q.length + ' respondidas', answeredCount() + ' of ' + Q.length + ' answered') + '</p></div>';
   }
 
   function renderDimensionStep(di) {
     var dim = DIMS[di];
     var html = progressHTML();
-    html += '<div class="step-head"><p class="step-eyebrow">Dimensión ' + (di + 1) + ' de ' + TOTAL_STEPS + '</p><h2 class="step-title">' + esc(dim.name) + '</h2></div>';
+    html += '<div class="step-head"><p class="step-eyebrow">' + L('Dimensión ' + (di + 1) + ' de ' + TOTAL_STEPS, 'Dimension ' + (di + 1) + ' of ' + TOTAL_STEPS) + '</p><h2 class="step-title">' + esc(L(dim.name, dim.nameEn)) + '</h2></div>';
     Q.forEach(function (q, idx) {
       if (q.d !== di) return;
-      html += '<div class="q" data-qi="' + idx + '"><p class="q-title">' + esc(q.t) + '</p>';
-      q.o.forEach(function (opt, oi) {
+      html += '<div class="q" data-qi="' + idx + '"><p class="q-title">' + esc(L(q.t, q.tEn)) + '</p>';
+      var opts = L(q.o, q.oEn);
+      opts.forEach(function (opt, oi) {
         var checked = state.answers[idx] === (oi + 1) ? ' checked' : '';
         html += '<label class="opt"><input type="radio" name="q' + idx + '" value="' + (oi + 1) + '"' + checked + '><span>' + esc(opt) + '</span></label>';
       });
@@ -221,8 +284,8 @@
     });
     html += '<p class="diag-err" id="diag-err"></p>';
     html += '<div class="diag-nav">' +
-      (di > 0 ? '<button type="button" class="btn btn-ghost" id="diag-back">← Atrás</button>' : '<span></span>') +
-      '<button type="button" class="btn" id="diag-next">' + (di < TOTAL_STEPS - 1 ? 'Siguiente <span class="arrow">→</span>' : 'Continuar <span class="arrow">→</span>') + '</button>' +
+      (di > 0 ? '<button type="button" class="btn btn-ghost" id="diag-back">' + L('← Atrás', '← Back') + '</button>' : '<span></span>') +
+      '<button type="button" class="btn" id="diag-next">' + (di < TOTAL_STEPS - 1 ? L('Siguiente', 'Next') : L('Continuar', 'Continue')) + ' <span class="arrow">→</span></button>' +
       '</div>';
     app.innerHTML = html;
 
@@ -230,7 +293,7 @@
       inp.addEventListener('change', function () {
         state.answers[parseInt(inp.name.slice(1), 10)] = parseInt(inp.value, 10);
         var pb = app.querySelector('.diag-progress-bar > i'); if (pb) pb.style.width = Math.round(answeredCount() / Q.length * 100) + '%';
-        var pt = app.querySelector('.diag-progress-txt'); if (pt) pt.textContent = answeredCount() + ' de ' + Q.length + ' respondidas';
+        var pt = app.querySelector('.diag-progress-txt'); if (pt) pt.textContent = L(answeredCount() + ' de ' + Q.length + ' respondidas', answeredCount() + ' of ' + Q.length + ' answered');
         var qc = inp.closest('.q'); if (qc) qc.classList.remove('q-missing');
       });
     });
@@ -241,7 +304,7 @@
       Q.forEach(function (q, idx) { if (q.d === di && !state.answers[idx]) missing.push(idx); });
       if (missing.length) {
         missing.forEach(function (idx) { var el = app.querySelector('[data-qi="' + idx + '"]'); if (el) el.classList.add('q-missing'); });
-        document.getElementById('diag-err').textContent = 'Responde las ' + missing.length + ' preguntas que faltan en esta sección.';
+        document.getElementById('diag-err').textContent = L('Responde las ' + missing.length + ' preguntas que faltan en esta sección.', 'Answer the ' + missing.length + ' remaining questions in this section.');
         app.querySelector('[data-qi="' + missing[0] + '"]').scrollIntoView({ behavior: 'smooth', block: 'center' });
         return;
       }
@@ -249,26 +312,32 @@
     });
   }
 
+  function roleOpts() {
+    var es = ['Aspirante','Coordinador','PM','PM Senior','PMO','Otro'];
+    var en = ['Aspiring','Coordinator','PM','Senior PM','PMO','Other'];
+    var labels = L(es, en);
+    var out = '<option value="" disabled selected>' + L('Selecciona…', 'Select…') + '</option>';
+    for (var i = 0; i < es.length; i++) { out += '<option value="' + esc(es[i]) + '">' + esc(labels[i]) + '</option>'; }
+    return out;
+  }
+
   function renderContactStep() {
     var html = progressHTML();
-    html += '<div class="step-head center"><p class="step-eyebrow">Último paso</p><h2 class="step-title">¿A dónde te enviamos tu resultado?</h2></div>';
-    html += '<p class="contact-intro lead">Te mostramos tu nivel, tus prioridades y tu plan de 7 días — y te enviamos tu ruta personalizada por correo.</p>';
+    html += '<div class="step-head center"><p class="step-eyebrow">' + L('Último paso', 'Last step') + '</p><h2 class="step-title">' + L('¿A dónde te enviamos tu resultado?', 'Where do we send your result?') + '</h2></div>';
+    html += '<p class="contact-intro lead">' + L('Te mostramos tu nivel, tus prioridades y tu plan de 7 días — y te enviamos tu ruta personalizada por correo.', 'We will show your level, priorities and 7-day plan — and email you your personalized path.') + '</p>';
     html += '<form class="form-card" id="diag-form" style="max-width:480px;margin:0 auto;">' +
-      '<div class="diag-field"><label for="dg-nombre">¿Cómo te llamas?</label><input id="dg-nombre" name="first_name" type="text" autocomplete="given-name" required></div>' +
-      '<div class="diag-field"><label for="dg-email">¿A qué correo enviamos tu resultado y ruta?</label><input id="dg-email" name="email_address" type="email" autocomplete="email" required></div>' +
-      '<div class="diag-field"><label for="dg-rol">Rol actual</label><select id="dg-rol" name="rol" required>' +
-        '<option value="" disabled selected>Selecciona…</option>' +
-        '<option>Aspirante</option><option>Coordinador</option><option>PM</option><option>PM Senior</option><option>PMO</option><option>Otro</option></select></div>' +
-      '<div class="diag-field"><label for="dg-exp">Años de experiencia <span style="font-weight:400;color:var(--fg-3);">(opcional)</span></label><select id="dg-exp" name="experiencia">' +
-        '<option value="" selected>Prefiero no decir</option><option>0</option><option>1-2</option><option>3-5</option><option>6-10</option><option>10+</option></select></div>' +
-      '<label class="diag-consent"><input type="checkbox" id="dg-consent" required><span>Acepto recibir mi resultado y contenidos relacionados. Puedo cancelar en cualquier momento.</span></label>' +
-      '<button type="submit" class="btn btn-lg" id="dg-submit" style="width:100%;margin-top:1rem;">Ver mi resultado <span class="arrow">→</span></button>' +
+      '<div class="diag-field"><label for="dg-nombre">' + L('¿Cómo te llamas?', 'What is your name?') + '</label><input id="dg-nombre" name="first_name" type="text" autocomplete="given-name" required></div>' +
+      '<div class="diag-field"><label for="dg-email">' + L('¿A qué correo enviamos tu resultado y ruta?', 'Which email should we send your result and path to?') + '</label><input id="dg-email" name="email_address" type="email" autocomplete="email" required></div>' +
+      '<div class="diag-field"><label for="dg-rol">' + L('Rol actual', 'Current role') + '</label><select id="dg-rol" name="rol" required>' + roleOpts() + '</select></div>' +
+      '<div class="diag-field"><label for="dg-exp">' + L('Años de experiencia', 'Years of experience') + ' <span style="font-weight:400;color:var(--fg-3);">(' + L('opcional', 'optional') + ')</span></label><select id="dg-exp" name="experiencia">' +
+        '<option value="" selected>' + L('Prefiero no decir', 'Prefer not to say') + '</option><option>0</option><option>1-2</option><option>3-5</option><option>6-10</option><option>10+</option></select></div>' +
+      '<label class="diag-consent"><input type="checkbox" id="dg-consent" required><span>' + L('Acepto recibir mi resultado y contenidos relacionados. Puedo cancelar en cualquier momento.', 'I agree to receive my result and related content. I can unsubscribe at any time.') + '</span></label>' +
+      '<button type="submit" class="btn btn-lg" id="dg-submit" style="width:100%;margin-top:1rem;">' + L('Ver mi resultado', 'See my result') + ' <span class="arrow">→</span></button>' +
       '<p class="diag-err" id="diag-err"></p>' +
       '</form>';
-    html += '<div class="diag-nav" style="justify-content:center;"><button type="button" class="btn btn-ghost" id="diag-back">← Atrás</button></div>';
-    html += '<p class="diag-note">Herramienta educativa y comercial. No es una evaluación psicométrica ni certificación profesional validada.</p>';
+    html += '<div class="diag-nav" style="justify-content:center;"><button type="button" class="btn btn-ghost" id="diag-back">' + L('← Atrás', '← Back') + '</button></div>';
+    html += '<p class="diag-note">' + L('Herramienta educativa y comercial. No es una evaluación psicométrica ni certificación profesional validada.', 'Educational and commercial tool. Not a psychometric assessment or a validated professional certification.') + '</p>';
     app.innerHTML = html;
-
     document.getElementById('diag-back').addEventListener('click', function () { state.step--; render(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
     document.getElementById('diag-form').addEventListener('submit', onSubmit);
   }
@@ -279,21 +348,17 @@
     Q.forEach(function (q, idx) { var v = state.answers[idx] || 0; dimScores[q.d] += v; total += v; });
     var level = LEVELS[0];
     for (var i = 0; i < LEVELS.length; i++) { if (total >= LEVELS[i].min) level = LEVELS[i]; }
-    // 2 dimensiones más bajas (asc; empate -> dimensión más temprana)
     var order = dimScores.map(function (s, i) { return { i: i, s: s }; });
     order.sort(function (a, b) { return a.s - b.s || a.i - b.i; });
-    var priorities = [order[0].i, order[1].i];
-    return { total: total, dimScores: dimScores, level: level, priorities: priorities };
+    return { total: total, dimScores: dimScores, level: level, priorities: [order[0].i, order[1].i] };
   }
 
   async function onSubmit(e) {
     e.preventDefault();
-    var form = e.target;
-    var data = Object.fromEntries(new FormData(form));
+    var data = Object.fromEntries(new FormData(e.target));
     var r = compute();
     var btn = document.getElementById('dg-submit');
-    var original = btn.innerHTML;
-    btn.disabled = true; btn.textContent = 'Enviando…';
+    btn.disabled = true; btn.textContent = L('Enviando…', 'Sending…');
     var prioNames = r.priorities.map(function (i) { return DIMS[i].name; }).join(' · ');
     try {
       var mlBody = new URLSearchParams({ 'fields[email]': data.email_address, 'fields[name]': data.first_name || '', 'ml-submit': '1', 'anticsrf': 'true' });
@@ -310,8 +375,9 @@
         })
       });
       await Promise.allSettled([mlReq, backupReq]);
-    } catch (err) { /* no bloqueamos el resultado */ }
-    renderResult(r, data.first_name || '');
+    } catch (err) {}
+    lastResult = r; lastNombre = data.first_name || '';
+    renderResult(r, lastNombre);
   }
 
   function renderResult(r, nombre) {
@@ -319,47 +385,55 @@
     var saludo = nombre ? esc(nombre) + ', ' : '';
     var dimHTML = DIMS.map(function (dim, i) {
       var sc = r.dimScores[i], pct = Math.round(sc / 20 * 100), low = sc <= 10;
-      return '<div class="dim-row"><div class="dim-top"><span>' + esc(dim.name) + '</span><b>' + sc + '/20</b></div>' +
+      return '<div class="dim-row"><div class="dim-top"><span>' + esc(L(dim.name, dim.nameEn)) + '</span><b>' + sc + '/20</b></div>' +
         '<div class="dim-bar' + (low ? ' low' : '') + '"><i style="width:' + pct + '%"></i></div></div>';
     }).join('');
     var prioHTML = r.priorities.map(function (i) {
-      return '<div style="margin-bottom:1rem;"><p class="prio-name">' + esc(DIMS[i].name) + '</p><p class="prio-desc">' + esc(DIMS[i].low) + '</p></div>';
+      return '<div style="margin-bottom:1rem;"><p class="prio-name">' + esc(L(DIMS[i].name, DIMS[i].nameEn)) + '</p><p class="prio-desc">' + esc(L(DIMS[i].low, DIMS[i].lowEn)) + '</p></div>';
     }).join('');
-    var fortHTML = lv.fortalezas.map(function (f) { return '<li>' + esc(f) + '</li>'; }).join('');
+    var fortHTML = L(lv.fortalezas, lv.fortalezasEn).map(function (f) { return '<li>' + esc(f) + '</li>'; }).join('');
 
     hero.style.display = 'none';
     app.innerHTML =
       '<div class="result show center">' +
         '<span class="level-badge">' + esc(lv.name) + '</span>' +
         '<p class="score-big">' + r.total + '<small>/100</small></p>' +
-        '<h2 class="level-title">' + saludo + esc(lv.titular) + '</h2>' +
-        '<p class="level-desc">' + esc(lv.desc) + '</p>' +
+        '<h2 class="level-title">' + saludo + esc(L(lv.titular, lv.titularEn)) + '</h2>' +
+        '<p class="level-desc">' + esc(L(lv.desc, lv.descEn)) + '</p>' +
         '<div class="res-grid">' +
-          '<div class="res-card"><h3>Tu puntaje por dimensión</h3>' + dimHTML + '</div>' +
-          '<div class="res-card prio-card"><h3>Tus 2 prioridades</h3>' + prioHTML + '</div>' +
+          '<div class="res-card"><h3>' + L('Tu puntaje por dimensión', 'Your score by dimension') + '</h3>' + dimHTML + '</div>' +
+          '<div class="res-card prio-card"><h3>' + L('Tus 2 prioridades', 'Your 2 priorities') + '</h3>' + prioHTML + '</div>' +
         '</div>' +
         '<div class="res-grid">' +
-          '<div class="res-card"><h3>Tus fortalezas</h3><ul class="res-list">' + fortHTML + '</ul></div>' +
-          '<div class="plan7" style="margin:0;"><h3>Tu plan de 7 días</h3><p>' + esc(lv.plan7) + '</p></div>' +
+          '<div class="res-card"><h3>' + L('Tus fortalezas', 'Your strengths') + '</h3><ul class="res-list">' + fortHTML + '</ul></div>' +
+          '<div class="plan7" style="margin:0;"><h3>' + L('Tu plan de 7 días', 'Your 7-day plan') + '</h3><p>' + esc(L(lv.plan7, lv.plan7En)) + '</p></div>' +
         '</div>' +
         '<div class="rec-card">' +
-          '<p class="rec-eyebrow">Tu ruta recomendada</p>' +
-          '<p class="rec-name">' + esc(lv.product) + '</p>' +
-          '<a href="' + lv.url + '" class="btn">' + esc(lv.cta) + ' <span class="arrow">→</span></a>' +
+          '<p class="rec-eyebrow">' + L('Tu ruta recomendada', 'Your recommended path') + '</p>' +
+          '<p class="rec-name">' + esc(L(lv.product, lv.productEn)) + '</p>' +
+          '<a href="' + lv.url + '" class="btn">' + esc(L(lv.cta, lv.ctaEn)) + ' <span class="arrow">→</span></a>' +
         '</div>' +
-        '<p class="center diag-restart"><a class="backlink" id="diag-restart">↺ Repetir el diagnóstico</a></p>' +
+        '<p class="center diag-restart"><a class="backlink" id="diag-restart">' + L('↺ Repetir el diagnóstico', '↺ Retake the diagnostic') + '</a></p>' +
       '</div>';
     document.getElementById('diag-restart').addEventListener('click', function () {
-      state = { step: 0, answers: {} }; hero.style.display = ''; render(); window.scrollTo({ top: 0, behavior: 'smooth' });
+      state = { step: 0, answers: {} }; lastResult = null; hero.style.display = ''; render(); window.scrollTo({ top: 0, behavior: 'smooth' });
     });
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   function render() {
+    if (lastResult) { renderResult(lastResult, lastNombre); return; }
     if (state.step < TOTAL_STEPS) renderDimensionStep(state.step);
     else renderContactStep();
   }
-  render();
+
+  // re-render al cambiar idioma (i18n.js ya actualizó el lang antes que este handler)
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('[data-lang-btn]')) { render(); }
+  });
+
+  function boot() { render(); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
 })();
 </script>
 </body>
